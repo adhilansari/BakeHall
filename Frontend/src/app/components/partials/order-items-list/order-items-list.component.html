@@ -1,0 +1,29 @@
+<ul class="flex flex-col  justify-evenly border-[1px] border-solid border-[#ffbbbb] m-[0.5rem] ">
+  <li *ngFor="let item of order.items"
+    class="sm:flex  justify-center  gap-2 items-center w-full lg:flex-nowrap border-b-[1px] border-solid border-[#e4e4e4] last:border-none shadow-xl  px-2">
+    <div class="flex justify-center p-[1rem]">
+      <img class="h-full w-full lg:w-[7rem] rounded-full lg:h-[5rem]  object-contain" [src]="item.food.imageUrl"
+        [alt]="item.food.name">
+    </div>
+    <div class="flex justify-around w-full space-y-1 flex-col  md:flex-wrap py-2 lg:flex-row">
+      <div
+        class="flex items-center justify-center p-[1rem] bg-slate-100 rounded-full lg:w-[150px] truncate text-center">
+        <a routerLink="/food/{{item.food.id}}">{{item.food.name}}</a>
+      </div>
+      <div
+        class="flex items-center justify-center p-[1rem] bg-slate-100 rounded-full lg:w-[90px] text-center overflow-auto">
+        {{item.food.price|currency}}
+      </div>
+      <div
+        class="flex items-center justify-center p-[1rem] bg-slate-100 rounded-full lg:w-[90px] text-center overflow-auto">
+        {{item.quantity}}
+      </div>
+      <div
+        class="flex items-center justify-center p-[1rem] bg-slate-100 rounded-full lg:w-[90px] text-center overflow-auto">
+        {{item.price|currency}}
+      </div>
+    </div>
+
+  </li>
+
+</ul>

@@ -1,0 +1,7 @@
+<div class="relative w-screen h-[13rem] sm:w-[35rem] sm:h-[22rem] text-center ">
+
+  <button *ngIf="!readonly" class="absolute m-auto w-[15rem] h-[3rem] text-[1.2rem] top-0 right-0 left-0 z-40 hover:bg-white bg-white/50 cursor-pointer shadow-2xl border-[1px] border-slate-600" (click)="findMyLocation()">Find My Location</button>
+  <div #map class="w-full h-full z-30">
+
+  </div>
+</div>

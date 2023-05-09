@@ -1,0 +1,252 @@
+<div class="flex bg-[#E0C097] min-h-[calc(100vh-56px)]">
+  <aside class="flex flex-col w-[200px] max-h-[calc(100vh-56px)]" *ngIf="menu">
+
+    <div class="flex-grow flex items-center flex-col justify-between text-gray-500 bg-[#2D2424] ">
+      <nav class="flex flex-col mx-4 my-6 space-y-4">
+        <a href="#"
+          class="inline-flex items-center py-3 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg px-2">
+          <span><i class="fa-solid fa-folder"></i></span>
+          <span class="ml-2" x-show="menu">Folders</span>
+        </a>
+        <a href="#" class="inline-flex items-center py-3 text-blue-600 bg-white rounded-lg px-2">
+          <span><i class="fa-solid fa-chart-simple"></i></span>
+          <span class="ml-2" x-show="menu">Dashboard</span>
+        </a>
+        <a href="#"
+          class="inline-flex items-center py-3 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg px-2">
+          <span><i class="fa-solid fa-envelope"></i></span>
+          <span class="ml-2" x-show="menu">Messages</span>
+        </a>
+        <a href="#"
+          class="inline-flex items-center py-3 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg px-2">
+          <span><i class="fa-solid fa-file"></i></span>
+          <span class="ml-2" x-show="menu">Documents</span>
+        </a>
+      </nav>
+      <div class="flex justify-end">
+        <a
+          class="inline-flex p-3 hover:text-gray-400 justify-center border-gray-700 h-15 w-full border-t hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 px-2">
+          <span><i class="fa-solid fa-gear"></i></span>
+          <span class="ml-2" x-show="menu">Settings</span>
+        </a>
+      </div>
+    </div>
+  </aside>
+  <div class="flex w-full  text-gray-800 max-h-[calc(100vh-56px)] overflow-y-auto ">
+    <main class=" p-6 sm:p-4 w-full  space-y-4 h-fit overflow-y-auto">
+      <div class="flex flex-col space-y-2 md:space-y-0 md:flex-row justify-between">
+
+        <div class="mr-6 flex">
+          <div class="mr-8 cursor-pointer text-3xl" (click)="menu = !menu">
+            <span *ngIf="!menu"><i class="fa-solid fa-bars"></i></span>
+            <span *ngIf="menu"><i class="fa-solid fa-xmark"></i></span>
+          </div>
+          <h1 class="text-4xl font-semibold mb-2">Admin</h1>
+        </div>
+      </div>
+
+      <section class="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+        <div class="flex items-center py-2 px-4 bg-white shadow rounded-lg cursor-pointer" (click)="addPanel=!addPanel">
+          <div
+            class="inline-flex flex-shrink-0 items-center justify-center h-12 w-12 text-blue-600 bg-blue-100 rounded-full mr-6">
+            <i class="fa-solid fa-plus text-2xl"></i>
+          </div>
+          <div>
+            <span class="block text-xl font-bold">Add Food</span>
+          </div>
+        </div>
+        <div class="flex items-center py-2 px-4 bg-white shadow rounded-lg cursor-pointer" (click)="allFoods=!allFoods">
+          <div
+            class="inline-flex flex-shrink-0 items-center justify-center h-12 w-12 text-blue-600 bg-blue-100 rounded-full mr-6">
+            <i class="fa-solid fa-utensils text-2xl"></i>
+          </div>
+          <div>
+            <span class="block text-xl font-bold">Get All Food</span>
+          </div>
+        </div>
+      </section>
+
+      <div class="grid md:grid-flow-col h-full gap-3 bg-white">
+
+          <!-- add new food  -->
+          <div class="flex h-[750px]  justify-center mx-auto  flex-wrap  overflow-y-auto " *ngIf="addPanel">
+            <div class="p-4 flex-row">
+
+              <div class="w-full px-8 py-10 bg-[#E0C097] shadow-lg">
+                <h1 class="font-semibold text-xl border-b pb-8">Add New Food</h1>
+                <form [formGroup]="foodForm" (ngSubmit)="Submit()">
+                  <!--FoodName input-->
+                  <label class="font-medium inline-block mb-3 text-sm uppercase">Food Name</label>
+                  <div class="relative mb-4">
+                    <input type="text" formControlName="name"
+                      class="w-full px-4 py-2 focus:outline-none ring-1  rounded-md">
+                  </div>
+                  <!--cookTime input-->
+                  <label class="font-medium inline-block mb-3 text-sm uppercase">Cook Time</label>
+                  <div class="relative mb-4">
+                    <input type="text" formControlName="cookTime"
+                      class="w-full px-4 py-2 focus:outline-none ring-1  rounded-md">
+                  </div>
+                  <!--userAddress input-->
+                  <label class="font-medium inline-block mb-3 text-sm uppercase">Price</label>
+                  <div class="relative mb-4">
+                    <input type="text" formControlName="price"
+                      class="w-full px-4 py-2 focus:outline-none ring-1  rounded-md">
+                  </div>
+                  <!--tags input-->
+                  <label class="font-medium inline-block mb-3 text-sm uppercase">Tags</label>
+                  <div class="relative mb-4">
+                    <input type="text" formControlName="tags"
+                      class="w-full px-4 py-2 focus:outline-none ring-1  rounded-md">
+                  </div>
+                  <!--origins input-->
+                  <label class="font-medium inline-block mb-3 text-sm uppercase">Origins</label>
+                  <div class="relative mb-4">
+                    <input type="text" formControlName="origins"
+                      class="w-full px-4 py-2 focus:outline-none ring-1  rounded-md">
+                  </div>
+                  <!--image input-->
+                  <label class="font-medium inline-block mb-3 text-sm uppercase">Image</label>
+                  <div class="relative mb-4">
+                    <span class="mt-2 text-base leading-normal">Select a file</span>
+                    <input formControlName="image" type='file'
+                      class="w-full px-4 py-2 focus:outline-none ring-1  rounded-md bg-white" />
+                  </div>
+
+                </form>
+
+                <!-- <div class="max-h-[300px] bg-red-700 sm:h-[570px] lg:h-auto overflow-y-auto">
+              </div> -->
+                <div class="border-t mt-8 ">
+                  <button type="submit" (click)="Submit()"
+                    class="bg-indigo-500 font-semibold tracking-wide hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">Upload
+                    Food</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        <!-- </section> -->
+
+        <!-- all foods  -->
+        <div class="flex gap-3 h-[750px]  justify-center mx-auto  flex-wrap  overflow-y-auto p-5 "
+          *ngIf="allFoods">
+          <!-- one foods  -->
+          <div class="" *ngFor="let food of foods">
+            <section
+              class="flex md:max-h-[calc(100vh-58.61px)] flex-col overflow-hidden text-[#2D2424] rounded-lg shadow-lg md:w-80 hover:opacity-[0.9] ">
+              <a >
+                <img alt="Placeholder" class="block h-auto w-full" src="{{ food.imageUrl }}" [alt]="food.name" />
+              </a>
+
+              <section class="flex flex-col leading-tight p-2 md:p-4 bg-[#E0C097]">
+                <div class="flex items-center w-full justify-between leading-tight">
+                  <h1 class="text-lg">
+                    <a class="no-underline">
+                      {{ food.name }}
+                    </a>
+                  </h1>
+
+                </div>
+                <!-- <div class="stars mb-[0.2rem]">
+                <star-rating [value]="food.stars" [totalstars]="5" checkedcolor="red" uncheckedcolor="black" size="22px"
+                  [readonly]="true"></star-rating>
+              </div> -->
+                <div class="flex justify-between items-start">
+                  <div class="orgins flex-[9]">
+                    <span
+                      class="rounded-[2rem] bg-slate-200 inline-block text-[0.8rem] text-gray-600 mr-[0.3rem] py-[0.1rem] px-[0.5rem] mt-[0.2rem]"
+                      *ngFor="let origin of food.origins">
+                      {{ origin }}
+                    </span>
+                  </div>
+                  <div
+                    class="cook-time rounded-[2rem] bg-lime-200  text-[0.9rem] text-gray-600 mr-[0.3rem] py-[0.2rem] px-[0.5rem] mt-[0.2rem]">
+                    <span>🕐</span> {{ food.cookTime }}
+                  </div>
+                </div>
+                <div class="flex justify-between pb-[0.3rem] mt-[1rem] items-start">
+                  <div class="price text-[#414141] text-[0.9rem] mr-[0.3rem] py-[0.2rem] px-[0.5rem] ">
+                    <span>{{ food.price | currency }}</span>
+                  </div>
+                  <div class="flex">
+                    <div class="rounded-[2rem] bg-[#5C3D2E] text-white text-[0.9rem] mr-[0.3rem] py-[0.2rem] px-[0.5rem] ">
+                      <button>Edit</button>
+                    </div>
+                    <div class="rounded-[2rem] bg-red-600 text-white text-[0.9rem] mr-[0.3rem] py-[0.2rem] px-[0.5rem] " (click)="delete(food.id)">
+                      <button>Delete</button>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- <footer class="flex items-center justify-between leading-none p-2 md:p-4 h-full">
+                  <a class="flex items-center no-underline hover:underline text-black" href="#">
+                      <p class="ml-2 text-sm">
+                          BakeHall Assured
+                      </p>
+                  </a>
+              </footer> -->
+            </section>
+          </div>
+        </div>
+        <div class="flex  z-30  bg-red-500 justify-center mx-auto  flex-wrap  overflow-y-auto " *ngIf="editPanel">
+          <div class="p-4 flex-row">
+
+            <div class="w-full px-8 py-10  shadow-lg">
+              <h1 class="font-semibold text-xl border-b pb-8">Edit food</h1>
+              <form [formGroup]="foodForm" (ngSubmit)="Submit()">
+                <!--FoodName input-->
+                <label class="font-medium inline-block mb-3 text-sm uppercase">edit food name</label>
+                <div class="relative mb-4">
+                  <input type="text" formControlName="name"
+                    class="w-full px-4 py-2 focus:outline-none ring-1  rounded-md">
+                </div>
+                <!--cookTime input-->
+                <label class="font-medium inline-block mb-3 text-sm uppercase">edit Cook Time</label>
+                <div class="relative mb-4">
+                  <input type="text" formControlName="cookTime"
+                    class="w-full px-4 py-2 focus:outline-none ring-1  rounded-md">
+                </div>
+                <!--userAddress input-->
+                <label class="font-medium inline-block mb-3 text-sm uppercase">edit Price</label>
+                <div class="relative mb-4">
+                  <input type="text" formControlName="price"
+                    class="w-full px-4 py-2 focus:outline-none ring-1  rounded-md">
+                </div>
+                <!--tags input-->
+                <label class="font-medium inline-block mb-3 text-sm uppercase">edit Tags</label>
+                <div class="relative mb-4">
+                  <input type="text" formControlName="tags"
+                    class="w-full px-4 py-2 focus:outline-none ring-1  rounded-md">
+                </div>
+                <!--origins input-->
+                <label class="font-medium inline-block mb-3 text-sm uppercase">edit Origins</label>
+                <div class="relative mb-4">
+                  <input type="text" formControlName="origins"
+                    class="w-full px-4 py-2 focus:outline-none ring-1  rounded-md">
+                </div>
+                <!--image input-->
+                <label class="font-medium inline-block mb-3 text-sm uppercase">update Image</label>
+                <div class="relative mb-4">
+                  <span class="mt-2 text-base leading-normal">Select a file</span>
+                  <input formControlName="image" type='file'
+                    class="w-full px-4 py-2 focus:outline-none ring-1  rounded-md bg-white" />
+                </div>
+
+              </form>
+
+              <!-- <div class="max-h-[300px] bg-red-700 sm:h-[570px] lg:h-auto overflow-y-auto">
+            </div> -->
+              <div class="border-t mt-8 ">
+                <button type="submit" (click)="Submit()"
+                  class="bg-indigo-500 font-semibold tracking-wide hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">Update
+                  Food</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>

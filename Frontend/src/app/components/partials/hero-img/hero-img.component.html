@@ -1,0 +1,23 @@
+<section class=" flex items-center justify-center mx-auto px-4 md:px-12 py-2  ">
+  <div class="grid lg:grid-cols-2 items-center justify-items-center gap-5 p-2 md:p-8">
+    <div class="order-2 lg:order-1 flex flex-col justify-center items-center text-center md:px-2 text-slate-100/95">
+      <div class="space-y-4">
+        <p class="text-4xl font-bold md:text-6xl ">Be The Fastest In <span class="text-red-600">Delivering</span> Your Food</p>
+      </div>
+          <p class="mt-2 text- md:text-lg">Our job is to filling your tummy with delicious food and with fast and free delivery</p>
+    </div>
+    <div class="hidden sm:block order-1 lg:order-2 w-full  bg-transparent text-[#2D2424] border-[10px] rounded-lg with-conic-gradient " >
+      <owl-carousel-o [options]="customOptions" >
+
+        <ng-container *ngFor="let slide of foods">
+          <ng-template class=" " carouselSlide [id]="slide.id" >
+            <img [src]="slide.imageUrl"routerLink="/food/{{ slide.id }}" class="h-80 w-80 object-center lg:w-[500px] lg:h-[500px]" [alt]="slide.id" [title]="slide.id">
+          </ng-template>
+        </ng-container>
+
+      </owl-carousel-o>
+
+    </div>
+  </div>
+</section>
+

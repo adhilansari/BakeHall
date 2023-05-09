@@ -1,0 +1,21 @@
+{
+  "name": "bakehall",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "cd backend/built && node server.js",
+    "prebuild": "cd backend && npm run build",
+    "build": "cd frontend && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adhil-ansari-pv/BakeHall.git"
+  },
+  "author": "adhil ansari pv",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adhil-ansari-pv/BakeHall/issues"
+  },
+  "homepage": "https://github.com/adhil-ansari-pv/BakeHall#readme"
+}

@@ -1,0 +1,178 @@
+<div class="bg-gradient-to-r bg-[#5C3D2E]  ">
+  <app-hero-img *ngIf="hero"></app-hero-img>
+  <app-search></app-search>
+  <app-tags></app-tags>
+  <app-not-found
+    [visible]="!foods || !foods.length"
+    resentLinkText="Reset Search"
+  ></app-not-found>
+  <div class="flex justify-center flex-wrap mx-auto px-4 md:px-12">
+    <div
+      class="flex flex-wrap h-full gap-5 md:gap-9 py-4 justify-center -mx-1 lg:-mx-4"
+    >
+      <div class="" *ngFor="let food of foods">
+        <!-- card -->
+        <section
+          class="flex flex-col overflow-hidden text-[#2D2424] rounded-lg shadow-lg md:w-80 hover:opacity-[0.9]"
+        >
+          <a routerLink = "/food/{{ food.id }}">
+            <img
+              alt="Placeholder"
+              class="block h-auto w-full"
+              src="{{ food.imageUrl }}"
+              [alt]="food.name"
+            />
+          </a>
+
+          <section class="flex flex-col leading-tight p-2 md:p-4 bg-[#E0C097]">
+            <div class="flex items-center w-full justify-between leading-tight">
+              <h1 class="text-lg">
+                <a class="no-underline" href="#">
+                  {{ food.name }}
+                </a>
+              </h1>
+              <span
+                ><i
+                  class="fa-solid fa-heart  favorites text-[#e72929] text-2xl{{food.favorite?'':' text-gray-400 text-2xl'}}"
+                  (click)="changeFavorite(food)"
+                ></i
+              ></span>
+            </div>
+            <div class="stars mb-[0.2rem]">
+              <star-rating
+                [value]="food.stars"
+                [totalstars]="5"
+                checkedcolor="red"
+                uncheckedcolor="black"
+                size="22px"
+                [readonly]="true"
+              ></star-rating>
+            </div>
+            <div class="flex justify-between items-start">
+              <div class="orgins flex-[9]">
+                <span
+                  class="rounded-[2rem] bg-slate-200 inline-block text-[0.8rem] text-gray-600 mr-[0.3rem] py-[0.1rem] px-[0.5rem] mt-[0.2rem]"
+                  *ngFor="let origin of food.origins"
+                >
+                  {{ origin }}
+                </span>
+              </div>
+              <div
+                class="cook-time rounded-[2rem] bg-lime-200 inline-block text-[0.9rem] text-gray-600 mr-[0.3rem] py-[0.2rem] px-[0.5rem] mt-[0.2rem]"
+              >
+                <span>🕐</span> {{ food.cookTime }}
+              </div>
+            </div>
+            <div
+              class="price left-[0.9rem] pb-[0.3rem] px-0 text-[#414141] mt-[0.7rem] text-[1.1rem]"
+            >
+              <span>{{ food.price | currency }}</span>
+            </div>
+          </section>
+
+          <!-- <footer class="flex items-center justify-between leading-none p-2 md:p-4 h-full">
+                  <a class="flex items-center no-underline hover:underline text-black" href="#">
+                      <p class="ml-2 text-sm">
+                          BakeHall Assured
+                      </p>
+                  </a>
+              </footer> -->
+        </section>
+
+        <!-- END card -->
+      </div>
+    </div>
+  </div>
+
+  <footer class="relative bg-[#2D2424] text-slate-200 pt-8 pb-6">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-wrap text-left lg:text-left">
+        <div class="w-full lg:w-6/12 px-4 ">
+          <h4 class="text-3xl fonat-semibold text-blueGray-700">
+            Let's keep in touch!
+          </h4>
+          <h5 class="text-lg mt-0 mb-2 text-blueGray-600">
+            Find us on any of these platforms, we respond 1-2 business days.
+          </h5>
+          <div class="mt-6 lg:mb-0 mb-6 text-black">
+            <button
+              class="bg-white text-lightBlue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+              type="button"
+            >
+              <i class="fab fa-twitter"></i></button
+            ><button
+              class="bg-white text-lightBlue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+              type="button"
+            >
+              <i class="fab fa-facebook-square"></i></button
+            ><button
+              class="bg-white text-blueGray-800 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+              type="button"
+              onclick="location.href = 'https://github.com/adhil-ansari-pv'"
+
+            >
+              <i class="fab fa-github" ></i>
+            </button>
+          </div>
+        </div>
+        <div class="w-full lg:w-6/12 px-4">
+          <div class="flex flex-wrap items-top mb-6">
+            <div class="w-full lg:w-4/12 px-4 ml-auto">
+              <span
+                class="block uppercase text-blueGray-500 text-sm font-semibold mb-2"
+                >Useful Links</span
+              >
+              <ul class="list-unstyled">
+                <li>
+                  <a
+                    class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                    href="#"
+                    >About Us</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                    href="https://github.com/adhil-ansari-pv"
+                    >Github</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="w-full lg:w-4/12 px-4">
+              <span
+                class="block uppercase text-blueGray-500 text-sm font-semibold mb-2"
+                >Other Resources</span
+              >
+              <ul class="list-unstyled">
+
+                <li>
+                  <a
+                    class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                    href="#"
+                    >Terms & Conditions</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                    href="#"
+                    >Privacy Policy</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                    href="#"
+                    >Contact Us</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+</div>

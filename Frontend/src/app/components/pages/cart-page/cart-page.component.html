@@ -1,0 +1,83 @@
+<div class="flex items-center max-h-[calc(100vh-58.61px)] flex-col max-w-full md:flex-row justify-center">
+  <!-- <app-title title="Cart Page" margin="0 0 0 2.5rem"></app-title> -->
+  <div
+    class="flex flex-col overflow-y-auto md:h-[calc(100vh-58.61px)] w-full lg:px-8 bg-[#5C3D2E] md:px-6 px-4 py-4 overflow-x-auto ">
+    <div class="flex items-center text-white cursor-pointer"
+      routerLink="/">
+      <span >
+        <i class="fa-solid fa-angle-left"></i>
+        </span>
+      <p class="text-sm pl-2 leading-none dark:hover:text-gray-200">Back</p>
+    </div>
+    <!-- <p class="lg:text-4xl text-3xl font-black leading-10 text-gray-800 dark:text-white pt-3">Bag</p> -->
+    <app-title title="Cart Page" class="pt-3" margin="0 0 0 2.5rem"></app-title>
+    <app-not-found [visible]="!cart||!cart.items.length" notFoundMessage="Cart Page is Empty" resentLinkText="Go to Home Page"></app-not-found>
+
+
+
+
+    <ul *ngIf="cart && cart.items.length" class="flex flex-col  justify-evenly border-[1px] border-solid border-[#ffbbbb] m-[0.5rem] ">
+      <li *ngFor="let cartItem of cart.items"
+        class="sm:flex  justify-center  gap-4 items-center w-full lg:flex-nowrap border-b-[1px] border-solid border-[#e4e4e4] last:border-none shadow-xl  px-2">
+        <div class="flex justify-center p-[1rem]">
+          <img class="h-full w-full lg:w-[7rem] rounded-full lg:h-[5rem]  object-contain"
+            [src]="cartItem.food.imageUrl" [alt]="cartItem.food.name">
+        </div>
+        <div class="flex justify-around w-full space-y-1 flex-col  md:flex-wrap py-2 lg:flex-row">
+          <div class="flex items-center justify-center p-[1rem] bg-slate-100 rounded-full lg:w-[150px] truncate text-center">
+            <a routerLink="/food/{{cartItem.food.id}}">{{cartItem.food.name}}</a>
+          </div>
+          <div class="flex items-center justify-center p-[1rem] bg-slate-100 rounded-full lg:w-[85px] text-center overflow-auto">
+            <select data-te-select-init #quantitySelect [value]="cartItem.quantity"
+              (change)="changeQuantity(cartItem,quantitySelect.value)"
+              class="w-[3rem] text-center outline-none bg-transparent text-[1.1rem] font-thin">
+              <option selected value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+
+          </div>
+          <div class="flex items-center justify-center p-[1rem] bg-slate-100 rounded-full lg:w-[90px] text-center overflow-auto">
+            {{cartItem.price|currency}}
+          </div>
+          <div class="flex items-center justify-center p-[1rem] bg-slate-100 rounded-full lg:w-[94px] text-center overflow-auto">
+            <button
+              class="remove-button rounded-[1rem] border-none  text-[#e72929] opacity-[0.7] outline-none hover:opacity-[1] cursor-pointer"
+              (click)="removeFromCart(cartItem)">Remove</button>
+          </div>
+        </div>
+      </li>
+    </ul>
+
+
+  </div>
+  <div *ngIf="cart && cart.items.length" class="lg:w-96 md:w-8/12 w-full bg-[#2D2424] md:h-[calc(100vh-58.61px)]  dark:bg-gray-900 h-full">
+    <div class="flex flex-col h-full lg:px-8 px-4 justify-between overflow-y-auto py-4 text-white">
+      <div>
+        <p class="lg:text-4xl text-3xl font-black leading-9  dark:text-white">Summary</p>
+        <div class="flex items-center justify-between pt-16">
+          <p class="text-base leading-none  dark:text-white">Subtotal</p>
+          <p class="text-base leading-none  dark:text-white">{{cart.totalCount}}</p>
+        </div>
+        <div class="flex items-center justify-between pt-5">
+          <p class="text-base leading-none  dark:text-white">Shipping</p>
+          <p class="text-base leading-none  dark:text-white"></p>
+        </div>
+        <div class="flex items-center justify-between pt-5">
+          <p class="text-base leading-none  dark:text-white">Tax</p>
+          <p class="text-base leading-none  dark:text-white"></p>
+        </div>
+      </div>
+      <div>
+        <div class="flex items-center justify-between lg:pt-5 pb-3 ">
+          <p class="text-2xl leading-normal  dark:text-white">Total</p>
+          <p class="text-2xl font-bold leading-normal text-right  dark:text-white">
+            {{cart.totalPrice|currency}}</p>
+        </div>
+        <button routerLink="/checkout"
+          class="text-base leading-none w-full py-5 bg-[#e72929] rounded-full opacity-[0.7] hover:opacity-[1] focus:outline-none text-white">Proceed
+          to Checkout</button>
+      </div>
+    </div>
+  </div>
+</div>

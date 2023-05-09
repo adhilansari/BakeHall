@@ -1,0 +1,48 @@
+<app-not-found [visible]="!food" notFoundMessage="Food not Found"  resentLinkText="Back to Homepage"></app-not-found>
+<div class="flex items-center h-screen justify-center px-5 py-24 mx-auto bg-[#5C3D2E]" *ngIf="food">
+    <div class="lg:w-4/5 mx-auto flex items-center justify-center flex-wrap bg-[#E0C097] rounded-lg shadow-xl  overflow-hidden px-4 py-2">
+      <img alt="{{food.name}}" class="lg:w-1/2 w-full  md:h-[35rem] object-cover " src="{{food.imageUrl}}">
+      <div class="flex flex-col  border-white lg:w-1/2 w-full  lg:pl-10 lg:py-6 lg:mt-0">
+        <div class="flex items-center justify-between">
+          <h1 class="text-gray-900 text-[2rem] font-bold mb-1">{{food.name}}</h1>
+          <span class="mr-5"><i class="fa-solid fa-heart  favorites text-[#e72929] text-2xl{{food.favorite?'':' text-gray-400 text-2xl'}}"></i></span>
+        </div>
+        <div class="flex mb-4">
+          <span class="flex items-center">
+            <div class="stars  mb-[0.2rem]">
+              <star-rating [value]="food.stars"
+              [totalstars]="5"
+              checkedcolor="red"
+              uncheckedcolor="black"
+              size="22px"
+              [readonly]="true"
+              ></star-rating>
+            </div>
+            <span class="text-gray-600 ml-3">20 Reviews</span>
+          </span>
+        </div>
+        <div class="flex w-full flex-col mt-3 items-start  pb-5 border-b-2 border-gray-100 mb-5">
+
+            <div class="flex w-full overflow-x-auto mx-auto md:flex-wrap justify-start ">
+              <span class="rounded-[2rem] min-w-max bg-[#f0f0f0] py-[0.3rem] px-[1rem] my-[0.2rem] mx-[0.15rem] font-semibold text-red-700" *ngFor="let origin of food.origins">
+                {{origin}}
+              </span>
+            </div>
+            <div class="flex w-full overflow-x-auto mx-auto mt-2  md:flex-wrap justify-start ">
+              <span class="rounded-[2rem] min-w-max bg-[#f0f0f0] py-[0.3rem] px-[1rem] my-[0.2rem] mx-[0.15rem] font-semibold text-blue-700" *ngFor="let tag of food.tags">
+                {{tag}}
+              </span>
+            </div>
+
+            <div class="mt-[1rem]">
+              <span class="py-[0.6rem] text-[1.3rem]">Time to cook about <span class="text-red-900">{{food.cookTime}}</span> minutes</span>
+            </div>
+
+        </div>
+        <div class="flex flex-col space-y-4">
+          <span class="font-medium text-[1.8rem] text-green-600 before:text-gray-800 before:content-['Price_:_']">{{food.price | currency}}</span>
+          <button class="text-white bg-[#e72929] border-none text-[1.2rem] p-4 rounded-[10rem] outline-none hover:opacity-[0.9] cursor-pointer" (click)="addToCart()">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>

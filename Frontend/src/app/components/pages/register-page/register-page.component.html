@@ -1,0 +1,101 @@
+<!-- <app-title title="Login"></app-title> -->
+<section class="flex items-center justify-center gradient-form h-[calc(100vh-65px)] bg-[#5C3D2E] overflow-auto ">
+  <div class="w-full  h-[calc(100vh-65px)] p-4 sm:p-6 md:px-8">
+    <div class="g-6 flex h-fit flex-wrap items-center justify-center dark:text-neutral-200">
+      <div class="flex justify-center w-full">
+
+        <div class="lg:w-6/12">
+          <div class="md:mx-6 rounded-xl text-[#1f0f0f] p-2 md:p-3 bg-[#E0C097]">
+            <!--Logo-->
+            <div class="text-center">
+              <img class="mx-auto sm:w-[12rem]" src="../../../../assets/bakehall-logo.png" alt="logo" />
+              <h4 class="mb-2 mt-4 pb-1 text-xl font-semibold">
+                Back Hall
+              </h4>
+            </div>
+
+            <form [formGroup]="registerForm" (ngSubmit)="submit()">
+              <p class="mb-4 text-xl">Please Register</p>
+              <!--Username input-->
+              <div class="relative mb-4">
+                <input type="text" formControlName="name"
+                  class="w-full p-4 placeholder:text-slate-700 focus:outline-none ring-1  rounded-full"
+                  placeholder="User name">
+
+                <div class=" text-red-600 absolute right-4 top-4" *ngIf=" fc.name.errors&& isSubmitted">
+                  <div *ngIf="fc.name.errors.required">should not be empty</div>
+                  <div *ngIf="fc.name.errors.minlength">It must be at least 4 characters in length</div>
+                </div>
+              </div>
+
+              <!--Email input-->
+              <div class="relative mb-4">
+                <input type="email" formControlName="email"
+                  class="w-full p-4 placeholder:text-slate-700 focus:outline-none ring-1  rounded-full"
+                  placeholder="User Email">
+
+                <div class="text-red-600 absolute right-4 top-4" *ngIf="fc.email.errors && isSubmitted">
+                  <div *ngIf="fc.email.errors.required">should not be empty</div>
+                  <div *ngIf="fc.email.errors.email">Email is not correct</div>
+                </div>
+              </div>
+
+              <!--Password input-->
+              <div class="relative mb-4">
+                <input type="password" formControlName="password"
+                  class="w-full p-4 placeholder:text-slate-700 focus:outline-none ring-1  rounded-full"
+                  placeholder="Password">
+                <div class="text-red-600 absolute right-4 top-4" *ngIf="fc.password.errors&&isSubmitted">
+                  <div *ngIf="fc.password.errors.required">should not be empty</div>
+                  <div *ngIf="fc.password.errors.minlength">It must be at least 5 characters in length</div>
+
+                </div>
+              </div>
+
+               <!--confirmPassword input-->
+               <div class="relative mb-4">
+                <input type="password" formControlName="confirmPassword"
+                  class="w-full p-4 placeholder:text-slate-700 focus:outline-none ring-1  rounded-full"
+                  placeholder="Confirm password">
+                <div class="text-red-600 absolute right-4 top-4" *ngIf="fc.password.errors&&isSubmitted">
+                  <div *ngIf="fc.confirmPassword.errors">should not be empty</div>
+                  <!-- <div *ngIf="fc.confirmPassword.errors">should not be empty</div> -->
+
+                </div>
+              </div>
+
+               <!--address input-->
+               <div class="relative mb-4">
+                <input type="text" formControlName="address"
+                  class="w-full p-4 placeholder:text-slate-700 focus:outline-none ring-1  rounded-full"
+                  placeholder="Address">
+                <div class="text-red-600 absolute right-4 top-4" *ngIf="fc.address.errors&&isSubmitted">
+                  <div *ngIf="fc.address.errors.required">should not be empty</div>
+                  <div *ngIf="fc.address.errors.minlength">It must be at least 7 characters in length</div>
+                </div>
+
+              </div>
+
+              <!--Submit button-->
+              <div class="mb-6 pb-1 pt-1 text-center">
+                <button mat-raised-button type="submit"
+                  class=" p-6 w-full rounded-full px-8 bg-[#2D2424] text-white">Register</button>
+                <!--Forgot password link-->
+                <!-- <a href="#!">Forgot password?</a> -->
+              </div>
+
+              <!--Login button-->
+              <div class="flex items-center text-lg mb-6">
+                <p class="mb-0 mr-2">Already a user?</p>
+                <a routerLink="/login" [queryParams]="{returnUrl:returnUrl}"
+                  class="text-slate-800 hover:underline py-6">Login Now</a>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
