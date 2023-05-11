@@ -58,7 +58,6 @@ export class RegisterPageComponent implements OnInit{
       this.router.navigateByUrl(this.returnUrl)
     })
 
-    console.log(this.fc.confirmPassword.errors);
 
   }
 }

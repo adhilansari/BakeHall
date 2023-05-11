@@ -16,8 +16,9 @@ import { Food } from 'src/app/shared/models/Food';
 export class AdminComponent {
   menu:boolean=true
   addPanel:boolean=false
-  editPanel:boolean=true
+  editPanel:boolean=false
   foodForm!:FormGroup;
+  updateID!:string
   foods: Food[] = [];
   allFoods:boolean=false
 
@@ -54,8 +55,6 @@ export class AdminComponent {
       return
     }
 
-
-
     const FV=this.foodForm.value
 
     const food:Food={
@@ -73,11 +72,32 @@ export class AdminComponent {
       console.log('cccc');
     })
   }
-  updateFood(id:string){
+  update(id:string){
+    this.updateID=id
+    this.editPanel=!this.editPanel
+  }
 
-    this.http.put(ADMIN_URL,id)
+  submitChanges(){
+    const FV=this.foodForm.value
+    const food:Food={
+      id:this.updateID,
+      stars:0,
+      name:FV.name,
+      price:FV.price,
+      tags:FV.tags,
+      imageUrl:FV.image,
+      origins:FV.origins,
+      cookTime:FV.cookTime
+    }
+
+    let id = food.id
+    console.log(id);
+
+    this.http.put(`http://localhost:5000/api/admin/food/${id}`,food).subscribe()
 
   }
+
+
   openPanel(isOpen:boolean,type:string){
     this.addPanel=isOpen
   }
@@ -85,12 +105,8 @@ export class AdminComponent {
   delete(id:string){
     console.log(id);
 
-    this.http.delete(`http://localhost:5000/api/admin/food/${id}`).subscribe((res)=>{console.log(res  )})
+    this.http.delete(`http://localhost:5000/api/admin/food/${id}`).subscribe((res)=>{console.log(res)})
     this.toastr.warning('item deleted')
-
-
   };
-
-
 
 }

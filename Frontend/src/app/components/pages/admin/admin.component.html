@@ -169,7 +169,7 @@
                     <span>{{ food.price | currency }}</span>
                   </div>
                   <div class="flex">
-                    <div class="rounded-[2rem] bg-[#5C3D2E] text-white text-[0.9rem] mr-[0.3rem] py-[0.2rem] px-[0.5rem] ">
+                    <div class="rounded-[2rem] bg-[#5C3D2E] text-white text-[0.9rem] mr-[0.3rem] py-[0.2rem] px-[0.5rem]" (click)="update(food.id)">
                       <button>Edit</button>
                     </div>
                     <div class="rounded-[2rem] bg-red-600 text-white text-[0.9rem] mr-[0.3rem] py-[0.2rem] px-[0.5rem] " (click)="delete(food.id)">
@@ -189,12 +189,13 @@
             </section>
           </div>
         </div>
-        <div class="flex  z-30  bg-red-500 justify-center mx-auto  flex-wrap  overflow-y-auto " *ngIf="editPanel">
+        <div class="flex  z-30  bg-slate-200 justify-center mx-auto  flex-wrap  overflow-y-auto " *ngIf="editPanel">
           <div class="p-4 flex-row">
 
             <div class="w-full px-8 py-10  shadow-lg">
               <h1 class="font-semibold text-xl border-b pb-8">Edit food</h1>
-              <form [formGroup]="foodForm" (ngSubmit)="Submit()">
+              <span><i class="fa-solid fa-xmark"></i></span>
+              <form [formGroup]="foodForm" (ngSubmit)="submitChanges()">
                 <!--FoodName input-->
                 <label class="font-medium inline-block mb-3 text-sm uppercase">edit food name</label>
                 <div class="relative mb-4">
@@ -238,7 +239,7 @@
               <!-- <div class="max-h-[300px] bg-red-700 sm:h-[570px] lg:h-auto overflow-y-auto">
             </div> -->
               <div class="border-t mt-8 ">
-                <button type="submit" (click)="Submit()"
+                <button type="submit" (click)="submitChanges()"
                   class="bg-indigo-500 font-semibold tracking-wide hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">Update
                   Food</button>
               </div>

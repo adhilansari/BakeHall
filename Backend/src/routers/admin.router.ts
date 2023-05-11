@@ -40,7 +40,7 @@ router.post('/food',asyncHandler(
 ));
 
 //delete food
-router.delete('/food/:id',asyncHandler(
+router.delete('/food/:id',
     async (req,res)=>{
         const {id}=req.params
         console.log(id);
@@ -52,14 +52,17 @@ router.delete('/food/:id',asyncHandler(
 		}
 		res.status(200).json(food)
     }
-));
+);
 
-//update food
-router.put('/food/',asyncHandler(
+// //update food
+router.put('/food/:id',
     async (req,res)=>{
-        console.log(req.headers+'req.headers');
+        const id=req.params.id
+        console.log(id)
+        console.log(req.params);
+        console.log(req.body);
         
-        const {id} = req.headers
+        
         const food = await FoodModel.findByIdAndUpdate(id,req.body)
         if(!food){
 			 res.status(404).json({message:`cannot find any food with ID ${id}`});
@@ -67,20 +70,19 @@ router.put('/food/',asyncHandler(
 		const updatedFood = await FoodModel.findById(id)
 		res.status(200).json(updatedFood)
     }
-))
+)
 
-// const Storage = multer.diskStorage({
-//     destination:'assets',
-//     filename:(req,file,cb)=>{
-//         console.log(file);
-        
-//         cb(null,file.originalname)
-//     }
+
+// router.put('/food/:id' , async (req,res)=>{
+//           const id=req.params.id
+//           console.log(id)
+//           const food = await FoodModel.findByIdAndUpdate(id,req.body)
+//           if(!food){
+//                res.status(404).json({message:`cannot find any food with ID ${id}`});
+//           }
+//           const updatedFood = await FoodModel.findById(id)
+//           res.status(200).json(updatedFood)
 // })
-
-// const upload = multer({
-//     storage:Storage
-// }).single('testImage')
 
 
 

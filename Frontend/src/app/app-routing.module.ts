@@ -22,7 +22,7 @@ const routes: Routes = [
   {path:'register',component:RegisterPageComponent},
   {path:'checkout',component:CheckoutPageComponent,canActivate:[AuthGuard]},
   {path:'payment',component:PaymentPageComponent,canActivate:[AuthGuard]},
-  {path:'admin',component:AdminComponent}
+  {path:'admin',component:AdminComponent,canActivate:[AuthGuard]}
 ];
 
 @NgModule({

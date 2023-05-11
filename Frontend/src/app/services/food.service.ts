@@ -62,7 +62,7 @@ createFood(food:any):Observable<Food>{
     )
   }
   changeFavorite(food:Food):Observable<Food>{
-    return this.http.put<Food>(FOODS_URL,food)
+    return this.http.put<Food>('/api/admin/foods',food)
   }
 
 
