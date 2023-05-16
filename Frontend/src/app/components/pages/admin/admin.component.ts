@@ -11,102 +11,124 @@ import { Food } from 'src/app/shared/models/Food';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.scss']
+  styleUrls: ['./admin.component.scss'],
 })
 export class AdminComponent {
-  menu:boolean=true
-  addPanel:boolean=false
-  editPanel:boolean=false
-  foodForm!:FormGroup;
-  updateID!:string
+  menu: boolean = true;
+  panel: boolean = true;
+  foodForm!: FormGroup;
+  updateFood!: Food;
   foods: Food[] = [];
-  allFoods:boolean=false
+  allFoods: boolean = true;
+  foodsObservable!: Observable<Food[]>;
+  panelName:string='Add';
 
-
-  constructor(private formBuilder:FormBuilder,private toastr:ToastrService,private foodService:FoodService,private http:HttpClient){
-    let foodsObservable!: Observable<Food[]>;
-
-    foodsObservable = foodService.getAll();
-    foodsObservable.subscribe((serverFoods:Food[]) => {
+  constructor(
+    private formBuilder: FormBuilder,
+    private toastr: ToastrService,
+    private foodService: FoodService,
+    private http: HttpClient
+  ) {
+    this.foodsObservable = foodService.getAll();
+    this.foodsObservable.subscribe((serverFoods: Food[]) => {
       this.foods = serverFoods;
-    })
+    });
+  }
 
+  changePanel(){
+    this.foodForm.reset()
+    this.panelName='Edit'?'Add':'Edit'
+    this.panel=true
   }
 
   ngOnInit(): void {
     this.foodForm = this.formBuilder.group({
-      name:['',Validators.required],
-      price:['', Validators.required],
-      cookTime:['',Validators.required],
-      tags:['',Validators.required],
-      origins:['',Validators.required],
-      image:['',Validators.required]
+      name: ['', Validators.required],
+      price: ['', Validators.required],
+      cookTime: ['', Validators.required],
+      tags: ['', Validators.required],
+      origins: ['', Validators.required],
+      image: ['', Validators.required],
+    });
+  }
+
+  get fc() {
+    return this.foodForm.controls;
+  }
+
+  Submit() {
+    if (this.foodForm.invalid) {
+      this.toastr.warning('please fill the fields');
+      return;
+    }
+
+    const FV = this.foodForm.value;
+
+    const food: Food = {
+      id: '',
+      stars: 0,
+      name: FV.name,
+      price: FV.price,
+      tags: FV.tags,
+      imageUrl: FV.image,
+      origins: FV.origins,
+      cookTime: FV.cookTime,
+    };
+
+    this.foodService.createFood(food).subscribe((_) => {
+      this.foodsObservable.subscribe((serverFoods: Food[]) => {
+        this.foods = serverFoods;
+      });
+    });
+  }
+  update(food: Food) {
+    this.panelName='Edit'
+    this.updateFood = food;
+    this.foodForm = this.formBuilder.group({
+      name: [this.updateFood.name, Validators.required],
+      price: [this.updateFood.price, Validators.required],
+      cookTime: [this.updateFood.cookTime, Validators.required],
+      tags: [this.updateFood.tags, Validators.required],
+      origins: [this.updateFood.origins, Validators.required],
+      image: [this.updateFood.imageUrl, Validators.required],
     });
 
   }
 
-  get fc(){
-    return this.foodForm.controls
-  }
+  submitChanges() {
+    const FV = this.foodForm.value;
+    const food: Food = {
+      id: this.updateFood.id,
+      stars: 0,
+      name: FV.name,
+      price: FV.price,
+      tags: FV.tags,
+      imageUrl: FV.image,
+      origins: FV.origins,
+      cookTime: FV.cookTime,
+    };
 
-  Submit(){
-    if(this.foodForm.invalid){
-      this.toastr.warning('please fill the fields')
-      return
-    }
+    this.http
+      .put(`http://localhost:5000/api/admin/food/${this.updateFood.id}`, food)
+      .subscribe(() => {
+        this.foodsObservable.subscribe((serverFoods: Food[]) => {
+          this.foods = serverFoods;
+        });
+      });
 
-    const FV=this.foodForm.value
-
-    const food:Food={
-      id:'',
-      stars:0,
-      name:FV.name,
-      price:FV.price,
-      tags:FV.tags,
-      imageUrl:FV.image,
-      origins:FV.origins,
-      cookTime:FV.cookTime
-    }
-
-    this.foodService.createFood(food).subscribe(_ =>{
-      console.log('cccc');
-    })
-  }
-  update(id:string){
-    this.updateID=id
-    this.editPanel=!this.editPanel
-  }
-
-  submitChanges(){
-    const FV=this.foodForm.value
-    const food:Food={
-      id:this.updateID,
-      stars:0,
-      name:FV.name,
-      price:FV.price,
-      tags:FV.tags,
-      imageUrl:FV.image,
-      origins:FV.origins,
-      cookTime:FV.cookTime
-    }
-
-    let id = food.id
-    console.log(id);
-
-    this.http.put(`http://localhost:5000/api/admin/food/${id}`,food).subscribe()
+      this.toastr.success('Edited Successfully')
 
   }
 
 
-  openPanel(isOpen:boolean,type:string){
-    this.addPanel=isOpen
+  delete(id: string) {
+    this.http
+      .delete(`http://localhost:5000/api/admin/food/${id}`)
+      .subscribe((res) => {
+        this.foodsObservable.subscribe((serverFoods: Food[]) => {
+          this.foods = serverFoods;
+        });
+      });
+    this.toastr.warning('item deleted');
   }
-
-  delete(id:string){
-    console.log(id);
-
-    this.http.delete(`http://localhost:5000/api/admin/food/${id}`).subscribe((res)=>{console.log(res)})
-    this.toastr.warning('item deleted')
-  };
-
 }

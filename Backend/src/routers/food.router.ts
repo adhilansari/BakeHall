@@ -28,8 +28,8 @@ router.get('/', asyncHandler(
 
 router.get("/search/:searchKey", asyncHandler(
     async (req, res) => {
-        const searchRegEx = new RegExp(req.params.searchKey, 'i')
-        const foods = await FoodModel.find({ name: { $regex: searchRegEx } })
+        const searchRegEx = new RegExp(req.params.searchKey , "i" )        
+        const foods = await FoodModel.find({ name: { $regex: searchRegEx} })
         res.send(foods)
     }
 ));

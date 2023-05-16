@@ -18,7 +18,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterPageComponent } from './components/pages/register-page/register-page.component';
-import { TextInputComponent } from './components/partials/text-input/text-input.component';
 import { LoadingComponent } from './components/partials/loading/loading.component';
 import { LoadingInterceptor } from './shared/interceptors/loading.interceptor';
 import { CheckoutPageComponent } from './components/pages/checkout-page/checkout-page.component';
@@ -28,7 +27,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { PaymentPageComponent } from './components/pages/payment-page/payment-page.component';
 import { PaymentButtonComponent } from './components/partials/payment-button/payment-button.component';
 import { HeroImgComponent } from './components/partials/hero-img/hero-img.component';
-import {ROUTES, RouterModule,Routes} from '@angular/router'
+import { RouterModule} from '@angular/router'
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { AdminComponent } from './components/pages/admin/admin.component';
 
@@ -46,7 +45,6 @@ import { AdminComponent } from './components/pages/admin/admin.component';
     NotFoundComponent,
     LoginPageComponent,
     RegisterPageComponent,
-    TextInputComponent,
     LoadingComponent,
     CheckoutPageComponent,
     OrderItemsListComponent,

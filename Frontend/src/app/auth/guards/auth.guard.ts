@@ -13,14 +13,17 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    if(this.userService.currentUser.isAdmin && this.userService.currentUser.token) return true;
-
     if(this.userService.currentUser.isAdmin && this.userService.currentUser.token) {
-      this.router.navigateByUrl('/admin')
-      return true
-    };
+      return true;}
+    console.log(route);
 
-    this.router.navigate(["/"],{queryParams:{returnUrl:state.url}})
+
+    // if(this.userService.currentUser.isAdmin && this.userService.currentUser.token) {
+    //   this.router.navigateByUrl('/admin')
+    //   return true
+    // };
+
+    this.router.navigate(["/login"],{queryParams:{returnUrl:state.url}})
     return false
   }
 

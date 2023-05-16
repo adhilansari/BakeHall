@@ -13,7 +13,7 @@ export class HomeComponent {
   foods: Food[] = [];
   hero:boolean=true
   isFavorite!:boolean
-  constructor(private foodService: FoodService,  activatedRoute: ActivatedRoute,private router:Router) {
+  constructor(private foodService: FoodService,  activatedRoute: ActivatedRoute) {
     let foodsObservable!: Observable<Food[]>;
 
     // this.foodService.connect();
