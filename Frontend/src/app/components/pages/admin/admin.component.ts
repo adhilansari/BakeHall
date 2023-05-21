@@ -32,6 +32,7 @@ export class AdminComponent {
     this.foodsObservable = foodService.getAll();
     this.foodsObservable.subscribe((serverFoods: Food[]) => {
       this.foods = serverFoods;
+
     });
   }
 
@@ -62,7 +63,12 @@ export class AdminComponent {
       return;
     }
 
+
     const FV = this.foodForm.value;
+    const startIndex = FV.image.lastIndexOf('\\') + 1;
+    const fileName = FV.image.substr(startIndex);
+
+
 
     const food: Food = {
       id: '',
@@ -70,7 +76,7 @@ export class AdminComponent {
       name: FV.name,
       price: FV.price,
       tags: FV.tags,
-      imageUrl: FV.image,
+      imageUrl: FV.image.toLocaleLowerCase().split(' ').join('_'),
       origins: FV.origins,
       cookTime: FV.cookTime,
     };
@@ -80,6 +86,9 @@ export class AdminComponent {
         this.foods = serverFoods;
       });
     });
+
+    this.foodForm.reset()
+
   }
   update(food: Food) {
     this.panelName='Edit'
@@ -103,7 +112,7 @@ export class AdminComponent {
       name: FV.name,
       price: FV.price,
       tags: FV.tags,
-      imageUrl: FV.image,
+      imageUrl: FV.image.toLocaleLowerCase().split(' ').join('_'),
       origins: FV.origins,
       cookTime: FV.cookTime,
     };

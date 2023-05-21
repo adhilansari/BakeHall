@@ -77,7 +77,7 @@
                   <h1 class="font-semibold text-xl ">{{panelName}} food</h1>
                 <span><i class="fa-solid fa-xmark text-xl" (click)="panel=!panel"></i></span>
                 </div>
-                <form [formGroup]="foodForm"  (ngSubmit)="panelName=='Add'?Submit():submitChanges()">
+                <form [formGroup]="foodForm"  (ngSubmit)="panelName=='Add'?Submit():submitChanges()" enctype="multipart/form-data">
                   <!--FoodName input-->
                   <label for="" class="font-medium inline-block mb-3 text-sm uppercase">Food Name</label>
                   <div class="relative mb-4">
@@ -131,17 +131,17 @@
         <!-- </section> -->
 
         <!-- all foods  -->
-        <div class="flex gap-3 h-[750px]  justify-center mx-auto  flex-wrap  overflow-y-auto p-5 "
+        <div class="flex gap-3 h-[750px]  justify-center mx-auto  flex-wrap   overflow-y-auto p-5 "
           *ngIf="allFoods">
           <!-- one foods  -->
           <div class="" *ngFor="let food of foods">
             <section
               class="flex md:max-h-[calc(100vh-58.61px)] flex-col overflow-hidden text-[#2D2424] rounded-lg shadow-lg md:w-80 hover:opacity-[0.9] ">
               <a >
-                <img alt="Placeholder" class="block h-auto w-full" src="{{ food.imageUrl }}" [alt]="food.name" />
+                <img alt="Placeholder" class="block min-h-[209px] w-full" src="{{ food.imageUrl }}" [alt]="food.name" />
               </a>
 
-              <section class="flex flex-col leading-tight p-2 md:p-4 bg-[#E0C097]">
+              <section class="flex flex-col leading-tight p-2 md:p-4 bg-[#E0C097] min-h-[178px]" >
                 <div class="flex items-center w-full justify-between leading-tight">
                   <h1 class="text-lg">
                     <a class="no-underline">

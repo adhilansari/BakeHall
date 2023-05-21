@@ -1,4 +1,4 @@
-<div class="bg-primary_bg ">
+<div class="bg-gradient-to-br from-yellow-200 via-red-100 to-amber-200 ">
   <app-hero-img *ngIf="hero"></app-hero-img>
   <app-search></app-search>
   <app-tags></app-tags>
@@ -8,35 +8,43 @@
   ></app-not-found>
   <div class="flex justify-center flex-wrap mx-auto px-4 md:px-12">
     <div
-      class="flex flex-wrap h-full gap-5 md:gap-9 py-4 justify-center -mx-1 lg:-mx-4"
+      class="flex flex-wrap  h-full gap-5 md:gap-9 py-4 justify-center lg:grid lg:grid-cols-5 -mx-1 lg:-mx-4"
     >
       <div class="" *ngFor="let food of foods">
         <!-- card -->
         <section
-          class="flex flex-col overflow-hidden text-[#2D2424] rounded-lg shadow-lg md:w-80 hover:opacity-[0.9]"
+          class="flex  flex-col overflow-hidden text-[#2D2424] rounded-lg shadow-lg min-md:w-80 min-h-[385px] hover:opacity-[0.9]"
         >
           <a routerLink = "/food/{{ food.id }}">
             <img
               alt="Placeholder"
-              class="block h-auto w-full"
+              class="block w-full object-cover min-h-[209px]"
               src="{{ food.imageUrl}}"
               [alt]="food.name"
             />
           </a>
 
-          <section class="flex flex-col leading-tight p-2 md:p-4 bg-secondary_bg">
+          <section class="flex flex-col leading-tight p-2 bg-secondary_bg md:p-4 min-h-[199px]">
             <div class="flex items-center w-full justify-between leading-tight">
               <h1 class="text-lg">
                 <a class="no-underline" href="#">
                   {{ food.name }}
                 </a>
               </h1>
-              <span
+              <div class="flex items-center gap-3">
+                <span
                 ><i
                   class="fa-solid fa-heart  favorites text-[#e72929] text-2xl{{food.favorite?'':' text-gray-400 text-2xl'}}"
                   (click)="changeFavorite(food)"
                 ></i
               ></span>
+              <!-- <span
+              ><i
+                class="fa-solid fa-cart-shopping favorites text-blue-950 text-2xl{{cart?'':' text-gray-400 text-2xl'}}"
+                (click)="addToCart(food)"
+              ></i
+            ></span> -->
+              </div>
             </div>
             <div class="stars mb-[0.2rem]">
               <star-rating
@@ -49,9 +57,9 @@
               ></star-rating>
             </div>
             <div class="flex justify-between items-start">
-              <div class="orgins flex-[9]">
+              <div class="">
                 <span
-                  class="rounded-[2rem] bg-slate-200 inline-block text-[0.8rem] text-gray-600 mr-[0.3rem] py-[0.1rem] px-[0.5rem] mt-[0.2rem]"
+                  class="rounded-[2rem]  bg-slate-200 inline-block text-[0.8rem] text-gray-600 mr-[0.3rem] py-[0.1rem] px-[0.5rem] mt-[0.2rem]"
                   *ngFor="let origin of food.origins"
                 >
                   {{ origin }}

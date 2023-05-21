@@ -19,7 +19,7 @@ export const FoodSchema=new Schema<Food>(
     tags:{type:[String]},
     favorite:{type:Boolean},
     stars:{type:Number,required:true},
-    imageUrl:{data:Buffer, contentType:String},
+    imageUrl:{ type:String},
     origins:{type:[String],required:true},
     cookTime:{type:String,required:true},
     },{

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PaymentPageComponent } from './payment-page.component';
+import { OrderTrackPageComponent } from './order-track-page.component';
 
-describe('PaymentPageComponent', () => {
-  let component: PaymentPageComponent;
-  let fixture: ComponentFixture<PaymentPageComponent>;
+describe('OrderTrackPageComponent', () => {
+  let component: OrderTrackPageComponent;
+  let fixture: ComponentFixture<OrderTrackPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PaymentPageComponent ]
+      declarations: [ OrderTrackPageComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PaymentPageComponent);
+    fixture = TestBed.createComponent(OrderTrackPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

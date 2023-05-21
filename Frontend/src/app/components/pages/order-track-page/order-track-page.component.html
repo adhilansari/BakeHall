@@ -1,0 +1,32 @@
+
+<div class="flex flex-col md:flex-row items-start py-2 justify-center md:space-x-5 min-h-[calc(100vh-55px)] bg-[#5C3D2E] ">
+  <div class="w-full md:w-3/5 px-8 py-10 bg-[#E0C097] shadow-lg">
+    <h1 class="font-semibold text-2xl border-b pb-8">Order ID # {{order.id}}</h1>
+    <div class="flex justify-between mt-10 mb-5">
+      <span class="font-semibold text-sm uppercase">Items Total</span>
+      <span class="font-semibold text-sm">{{order.totalPrice|currency}}</span>
+    </div>
+    <div >
+      <!--Username input-->
+        <div class="m-[1rem] text-base p-1 bg-orange-100 sm:text-[.9rem] md:text-[1.1rem] break-words"><strong class="inline-block mr-3 ">Date</strong>{{order.createdAt | date:'medium'}}</div>
+
+        <!--userAddress input-->
+        <div class="m-[1rem] text-base p-1 bg-orange-100 sm:text-[.9rem] md:text-[1.1rem] break-words"><strong class="inline-block mr-3 ">Name</strong>{{order.name}}</div>
+
+        <div class="m-[1rem] text-base p-1 bg-orange-100 sm:text-[.9rem] md:text-[1.1rem] break-words"><strong class="inline-block mr-3 ">Address</strong>{{order.address}}</div>
+
+        <div class="m-[1rem] text-base p-1 bg-orange-100 sm:text-[.9rem] md:text-[1.1rem] break-words"><strong class="inline-block mr-3 ">Status</strong>{{order.status}}</div>
+        <div class="m-[1rem] text-base p-1 bg-orange-100 sm:text-[.9rem] md:text-[1.1rem] break-words" *ngIf="order.paymentId"><strong class="inline-block mr-3 ">Payment ID </strong>{{order.paymentId}}</div>
+
+    </div>
+
+    <div class="h-[550px] lg:h-auto overflow-y-auto">
+    <order-items-list [order]="order"></order-items-list>
+    </div>
+  </div>
+  <div class="flex mx-auto items-center  flex-col h-full">
+    <app-title title="Choose your address on Map"></app-title>
+    <map [order]="order" [readonly]="true"></map>
+  </div>
+</div>
+

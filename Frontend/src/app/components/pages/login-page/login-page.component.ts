@@ -23,7 +23,6 @@ export class LoginPageComponent implements OnInit{
       email:['', [Validators.required,Validators.email]],
       password:['', Validators.required]
     });
-
     this.returnUrl = this.activatedRoute.snapshot.queryParams.returnUrl;
   }
 
@@ -32,13 +31,21 @@ export class LoginPageComponent implements OnInit{
     return this.loginForm.controls;
   }
 
+
   Submit(){
     this.isSubmitted=true
     if(this.loginForm.invalid)return;
     this.userService.login({email:this.fc.email.value,password:this.fc.password.value}).subscribe(()=>{
       if(this.returnUrl) return this.router.navigateByUrl(this.returnUrl);
 
+      if(this.userService.currentUser.isAdmin){
       return this.router.navigate(["/admin"])
+      }
+
+      return this.router.navigate(["/"])
+
     })
   }
+
+
 }

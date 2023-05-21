@@ -1,7 +1,10 @@
 
-import { Router } from "express";
+import { Router, json } from "express";
 import asyncHandler from 'express-async-handler'
 import { Food, FoodModel } from "../models/food.model";
+// import cloudinaryConfig from "../configs/cloudinary.config";
+import upload from '../middlewares/multer.mid'
+const cloudinary = require('../configs/cloudinary.config')
 
 
 const router =Router();
@@ -16,26 +19,65 @@ router.get('/',asyncHandler(
 ));
 
 
-//create food
-router.post('/food',asyncHandler(
+router.post('/image',upload.single('image'), asyncHandler(
     async (req,res)=>{
-        console.log(req.body+'req.body');
+        try {
+        const result = await cloudinary.uploader.upload(req.file?.path)
+        // console.log(req.file?.path,'file path');
         
-        const { name, cookTime, price, tags,origins,imageUrl } = req.body
-        const newFood:Food={
-            id:'',
-            name,
-            price,
-            tags,
-            favorite:false,
-            stars:0,
-            imageUrl,
-            origins,
-            cookTime
-        };
+        res.json(result)
+       const  images = result.secure_url
+    //    console.log(images,'image path');
+       
+            
+        } catch (error) {
+            console.log(error);
+            
+        }
+    }
+))
 
-        const dbFood= await FoodModel.create(newFood)
-        res.send(dbFood)
+
+//create food
+router.post('/food',upload.single('image'),asyncHandler(
+    async (req,res)=>{
+
+
+        try {
+            const { name, cookTime, price, tags,origins,imageUrl } =await req.body
+
+            
+        
+            // console.log(upload);        
+            const result = await cloudinary.uploader.upload(imageUrl.replace('c:\\fakepath\\','images/'));
+            const images = result.secure_url
+            // console.log(images,'linklink');
+            
+    
+    
+            
+            const newFood:Food={
+                id:'',
+                name,
+                price,
+                tags,
+                favorite:false,
+                stars:0,
+                imageUrl:images,
+                origins,
+                cookTime
+            };
+    
+            const dbFood= await FoodModel.create(newFood)
+            res.send(dbFood)
+                
+            } catch (error) {
+                console.log(error);
+                
+            }
+
+
+        
     }
 ));
 
@@ -43,7 +85,6 @@ router.post('/food',asyncHandler(
 router.delete('/food/:id',
     async (req,res)=>{
         const {id}=req.params
-        console.log(id);
         
         const food = await FoodModel.findByIdAndDelete(id)
         
@@ -57,12 +98,7 @@ router.delete('/food/:id',
 // //update food
 router.put('/food/:id',
     async (req,res)=>{
-        const id=req.params.id
-        console.log(id)
-        console.log(req.params);
-        console.log(req.body);
-        
-        
+        const id=req.params.id  
         const food = await FoodModel.findByIdAndUpdate(id,req.body)
         if(!food){
 			 res.status(404).json({message:`cannot find any food with ID ${id}`});
@@ -71,18 +107,6 @@ router.put('/food/:id',
 		res.status(200).json(updatedFood)
     }
 )
-
-
-// router.put('/food/:id' , async (req,res)=>{
-//           const id=req.params.id
-//           console.log(id)
-//           const food = await FoodModel.findByIdAndUpdate(id,req.body)
-//           if(!food){
-//                res.status(404).json({message:`cannot find any food with ID ${id}`});
-//           }
-//           const updatedFood = await FoodModel.findById(id)
-//           res.status(200).json(updatedFood)
-// })
 
 
 

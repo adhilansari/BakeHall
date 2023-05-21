@@ -4,6 +4,7 @@
     <nav>
       <ul class="flex m-0">
         <li><a class=" p-4 inline-block hover:bg-[#5C3D2E] hover:cursor-pointer" routerLink="/login" *ngIf="!user.token">login</a></li>
+        <li><a class=" p-4 inline-block hover:bg-[#5C3D2E] hover:cursor-pointer" routerLink="/admin" *ngIf="user.isAdmin">Dashboard</a></li>
         <li><a class=" p-4 inline-block hover:bg-[#5C3D2E] hover:cursor-pointer" (click)="Favorites()">Wishlist</a></li>
 
         <li class="relative menu-container" *ngIf="isAuth">

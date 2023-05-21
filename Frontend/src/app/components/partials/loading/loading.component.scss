@@ -1,39 +1,124 @@
 
-li {
-  display: inline-block;
-  list-style: none;
-  height: 25px;
-  width: 25px;
-  background: #0fa;
-  border-radius: 100%;
-  margin: 0 0.2em;
-  animation: anm 1s linear infinite alternate;
-}
+// li {
+//   display: inline-block;
+//   list-style: none;
+//   height: 25px;
+//   width: 25px;
+//   background: #0fa;
+//   border-radius: 100%;
+//   margin: 0 0.2em;
+//   animation: anm 1s linear infinite alternate;
+// }
 
-@keyframes anm {
-  0% {
-    transform: scale(0.1);
-    filter: hue-rotate(0deg);
-    opacity: 0;
-  }
-  50% {
-    transform: scale(0.4);
-  }
-  100% {
-    transform: scale(1);
-    filter: hue-rotate(360deg);
-  }
-}
+// @keyframes anm {
+//   0% {
+//     transform: scale(0.1);
+//     filter: hue-rotate(0deg);
+//     opacity: 0;
+//   }
+//   50% {
+//     transform: scale(0.4);
+//   }
+//   100% {
+//     transform: scale(1);
+//     filter: hue-rotate(360deg);
+//   }
+// }
 
-li:nth-child(2) {
-  animation-delay: 0.4s;
-}
+// li:nth-child(2) {
+//   animation-delay: 0.4s;
+// }
 
-li:nth-child(3) {
-  animation-delay: 0.8s;
-}
+// li:nth-child(3) {
+//   animation-delay: 0.8s;
+// }
 
-li:nth-child(4) {
-  animation-delay: 1.2s;
-}
+// li:nth-child(4) {
+//   animation-delay: 1.2s;
+// }
 
+
+button
+{
+  width: 13rem;
+  height: 5rem;
+  margin-bottom: 0rem;
+}
+.top-bun
+{
+  border: 5px solid #f6bd70;
+  background-color: #ebb267;
+  border-radius: 5rem 5rem 1rem 1rem;
+  animation: bun-lettuce-coming .5s;
+}
+.tomato
+{
+  width: 9rem;
+  height: 1rem;
+  border: 2px solid #ff79da;
+  background-color: #ef6fcb;
+  border-radius: 2rem;
+  animation: content-coming .5s;
+}
+.lettuce
+{
+  width: 12rem;
+  height: 0.8rem;
+  border: 2px solid #b6f06a;
+  background-color: #a3d95d;
+  border-radius: 2rem;
+  animation: bun-lettuce-coming .5s;
+}
+.steak
+{
+  width: 13rem;
+  height: 1.8rem;
+  border: 2px solid #9356dc;
+  background-color: #794bb1;
+  border-radius: 3rem;
+  animation: content-coming .5s;
+}
+.bottom-bun
+{
+  height: 3rem;
+  border: 5px solid #f6bd70;
+  background-color: #e2ab64;
+  border-radius: 1rem 1rem 5rem 5rem;
+  animation: bun-lettuce-coming .5s;
+}
+@keyframes bun-lettuce-coming {
+    0% {
+        transform:translateX(-3rem);
+        margin: 1rem;
+    }
+    70% {
+        margin: 1rem;
+    }
+    100% {
+        transform: translateX(0rem);
+        margin: 0rem;
+    }
+}
+@keyframes content-coming {
+    from {
+        transform:translateX(1rem);
+    }
+    to {
+        transform:translateX(0rem);
+    }
+}
+@keyframes loader {
+    0% {
+        visibility: visible;
+        opacity: 1;
+        z-index: 9999;
+    }
+    60% {
+        opacity: 1;
+    }
+    100% {
+        visibility: hidden;
+        opacity: 0;
+        z-index: -1;
+    }
+}

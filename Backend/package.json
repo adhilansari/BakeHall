@@ -10,15 +10,18 @@
   "author": "adhil ansari",
   "license": "ISC",
   "dependencies": {
+    "@stripe/stripe-js": "^1.35.0",
     "@types/multer": "^1.4.7",
     "@types/socket.io": "^3.0.2",
     "bcryptjs": "^2.4.3",
+    "cloudinary": "^1.37.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.0.4",
+    "stripe": "^12.6.0",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.0.4"
   },

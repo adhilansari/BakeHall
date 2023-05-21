@@ -56,7 +56,6 @@ export class CheckoutPageComponent implements OnInit{
 
       next:() => {
         this.router.navigateByUrl('/payment');
-        // console.log('hihi');
 
       },
       error:(errorResponse) => {

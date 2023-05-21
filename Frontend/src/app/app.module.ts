@@ -30,6 +30,8 @@ import { HeroImgComponent } from './components/partials/hero-img/hero-img.compon
 import { RouterModule} from '@angular/router'
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { AdminComponent } from './components/pages/admin/admin.component';
+import { OrderTrackPageComponent } from './components/pages/order-track-page/order-track-page.component';
+
 
 
 @NgModule({
@@ -53,6 +55,8 @@ import { AdminComponent } from './components/pages/admin/admin.component';
     PaymentButtonComponent,
     HeroImgComponent,
     AdminComponent,
+    OrderTrackPageComponent,
+
 
   ],
   imports: [
@@ -70,7 +74,7 @@ import { AdminComponent } from './components/pages/admin/admin.component';
       easing:'ease-in',
       easeTime:1000,
       newestOnTop:false
-    })
+    }),
 
   ],
   providers: [

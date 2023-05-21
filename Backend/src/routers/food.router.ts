@@ -17,7 +17,7 @@ router.get("/seed", asyncHandler(
     }
 ));
 
-
+//get all
 router.get('/', asyncHandler(
     async (req, res) => {
         const foods = await FoodModel.find()
@@ -25,7 +25,7 @@ router.get('/', asyncHandler(
     }
 ));
 
-
+//get searched items
 router.get("/search/:searchKey", asyncHandler(
     async (req, res) => {
         const searchRegEx = new RegExp(req.params.searchKey , "i" )        
@@ -33,6 +33,8 @@ router.get("/search/:searchKey", asyncHandler(
         res.send(foods)
     }
 ));
+
+//get favorites
 router.get("/favorites/:isFavorite", asyncHandler(
     async (req, res) => {
 
@@ -42,6 +44,7 @@ router.get("/favorites/:isFavorite", asyncHandler(
     }
 ));
 
+//get tags
 router.get("/tags", asyncHandler(
     async (req, res) => {
         const tags = await FoodModel.aggregate([
@@ -74,6 +77,7 @@ router.get("/tags", asyncHandler(
     }
 ));
 
+//get by tags name
 router.get("/tags/:tagName", asyncHandler(
     async (req, res) => {
         const foods = await FoodModel.find({ tags: req.params.tagName })
@@ -81,6 +85,7 @@ router.get("/tags/:tagName", asyncHandler(
     }
 ));
 
+//get by id
 router.get("/:foodId", asyncHandler(
     async (req, res) => {
         const food = await FoodModel.findById(req.params.foodId)
@@ -88,8 +93,9 @@ router.get("/:foodId", asyncHandler(
     }
 ));
 
+
 router.put('/',asyncHandler(
-    async (req,res)=>{
+    async (req,res)=>{        
         const favFood = await FoodModel.findOneAndUpdate({_id:req.body.id},[{$set:{favorite:{$not:"$favorite"}}}])        
         res.send(favFood)
     }
