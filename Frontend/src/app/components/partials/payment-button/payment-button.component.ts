@@ -37,7 +37,6 @@ onCheckout():void{
         next: (orderId) => {
           this.cartService.clearCart();
           this.router.navigateByUrl('/track/' + orderId);
-          // this.router.navigateByUrl("/")
           this.toastrService.success(
             'Payment Saved Successfully',
             'Success'

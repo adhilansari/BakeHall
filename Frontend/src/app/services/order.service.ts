@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class OrderService {
-
+  orderId!:string
 
   constructor(private http: HttpClient) { }
 

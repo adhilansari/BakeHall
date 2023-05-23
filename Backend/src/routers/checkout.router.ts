@@ -5,7 +5,7 @@ const router =Router();
 
 
 
-const stripe = require('stripe')('sk_test_51McQDKSB847cAyCagmRFLNqAarDcO7ZfG7Jes6cdqcKWAkQCkuDw6W4LguUmn2JMg1oc7NYjVGPdU2Q4D76wf2we00KowLGrut');
+const stripe = require('stripe')(process.env.STRIPE_SECRET);
 
   router.post("/", async (req,res,next)=>{
   
@@ -19,9 +19,9 @@ const stripe = require('stripe')('sk_test_51McQDKSB847cAyCagmRFLNqAarDcO7ZfG7Jes
         const session = await stripe.checkout.sessions.create({
           
             payment_method_types: ['card'],
-            shipping_address_collection: {
-            allowed_countries: ['US', 'IN'],
-            },
+            // shipping_address_collection: {
+            // allowed_countries: ['US', 'IN'],
+            // },
 
                 shipping_options: [
                 {

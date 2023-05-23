@@ -40,10 +40,6 @@ export class HomeComponent {
         this.foods = serverFoods;
       })
     })
-
-    activatedRoute.params.subscribe((params=>{
-
-    }))
   }
 
   changeFavorite(food:Food){
