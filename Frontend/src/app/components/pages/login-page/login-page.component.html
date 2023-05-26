@@ -1,66 +1,62 @@
-<!-- <app-title title="Login"></app-title> -->
-<section class="flex items-center justify-center gradient-form min-h-[calc(100vh-56px)] overflow-auto bg-primary_bg">
-  <div class="w-full  h-[calc(100vh-65px)] p-4 sm:p-6 ">
-    <div class="g-6 flex h-fit flex-wrap items-center justify-center dark:text-neutral-200 ">
-      <div class="flex justify-center w-full">
 
-        <div class="lg:w-6/12">
-          <div class="md:mx-6 rounded-xl text-[#1f0f0f] p-2 md:p-12 shadow-xl bg-[#E0C097]">
-            <!--Logo-->
-            <div class="text-center">
-              <img class="mx-auto sm:w-[14rem]" src="../../../../assets/bakehall-logo.png" alt="logo" />
-              <h4 class="mb-12 mt-4 pb-1 text-xl font-semibold">
-                Back Hall
-              </h4>
-            </div>
+<div class="relative min-h-[calc(100vh-58.61px)] flex justify-center items-center  py-28 sm:py-0  ">
 
-            <form [formGroup]="loginForm" (ngSubmit)="Submit()">
-              <p class="mb-4 text-xl">Please login to your account</p>
-              <!--Username input-->
-        <label class="font-medium inline-block mb-3 text-lg uppercase">Email</label>
-              <div class="relative mb-4">
-                <input type="email" formControlName="email"
-                class="w-full p-4 focus:outline-none ring-1  rounded-md"
-                  placeholder="User Email">
-
-                <div class="text-red-600 flex gap-2 mt-2" *ngIf="fc.email.errors && isSubmitted">
-                  <div *ngIf="fc.email.errors.required">should not be empty</div>
-                  <div *ngIf="fc.email.errors.email">Email is not correct</div>
-                </div>
-              </div>
-
-              <!--Password input-->
-        <label class="font-medium inline-block mb-3 text-lg uppercase">Password</label>
-
-              <div class="relative mb-4">
-                <input type="password" formControlName="password"
-                class="w-full p-4 focus:outline-none ring-1  rounded-md"
-                  placeholder="Password">
-                <div class="text-red-600 flex gap-2 mt-2" *ngIf="fc.password.errors&&isSubmitted">
-                  <div *ngIf="fc.password.errors.required">should not be empty</div>
-                </div>
-              </div>
-
-              <!--Submit button-->
-              <div class="mb-12 pb-1 pt-1 text-center">
-                <button mat-raised-button type="submit"
-                  class=" p-6 w-full rounded-md px-8 bg-[#2D2424] text-white">Login</button>
-                <!--Forgot password link-->
-                <!-- <a href="#!">Forgot password?</a> -->
-              </div>
-
-              <!--Register button-->
-              <div class="flex items-center text-lg pb-6">
-                <p class="mb-0 mr-2">Don't have an account?</p>
-                <a routerLink="/register" [queryParams]="{returnUrl:returnUrl}"
-                  class="text-slate-800 hover:underline py-6">Register Now</a>
-              </div>
-            </form>
-          </div>
+  <div class="p-4 sm:p-8 flex-1 w-[280px]  min-w-[250px] relative">
+    <div class=" sm:max-w-[420px]  bg-white rounded-lg mx-auto">
+      <div class="px-5 sm:px-10 pt-8 pb-8 rounded-lg shadow-xl">
+        <div class="mx-auto text-center">
+          <h1 class="text-4xl text-gray-800">LOGIN</h1>
+          <p class="mt-4">How do you want to Login ?</p>
         </div>
+        <div class="flex items-center justify-around mt-6">
+          <div class="px-6 sm:px-0 max-w-sm">
+            <button type="button" class="text-white w-full  bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center justify-between dark:focus:ring-[#4285F4]/55 mr-2 mb-2">
+              <i class="fab fa-google fa-lg p-1"></i>
 
+              Sign up with Google<div></div></button>
+        </div>
+        </div>
+        <div class="flex items-center my-6">
+          <hr class="flex-1">
+          <span class="px-4 text-sm text-gray-400">Or countinue with</span>
+          <hr class="flex-1">
+        </div>
+        <form [formGroup]="loginForm" (ngSubmit)="Submit()">
+          <div class="relative">
+            <input id="email" name="email" type="email" formControlName="email" class="peer w-full px-0.5 border-0 border-b-2 border-gray-300 placeholder-transparent focus:outline-none focus:border-purple-600" placeholder="user@gmail.com">
+            <label for="email" class="absolute left-0 -top-5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-1 peer-focus:-top-6 peer-focus:text-purple-600 peer-focus:text-sm">Email</label>
+            <div class="text-red-600 flex gap-2 mt-2" *ngIf="fc.email.errors && isSubmitted">
+              <div *ngIf="fc.email.errors.required">should not be empty</div>
+              <div *ngIf="fc.email.errors.email">Email is not correct</div>
+            </div>
+          </div>
+          <div class="mt-7 relative">
+            <input id="password" type="password" formControlName="password" name="password" class="peer w-full px-0.5 border-0 border-b-2 border-gray-300 placeholder-transparent focus:outline-none focus:border-purple-600" placeholder="Password" />
+            <label for="password" class="absolute left-0 -top-5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-1 peer-focus:-top-6 peer-focus:text-purple-600 peer-focus:text-sm">Password</label>
+            <div class="text-red-600 flex gap-2 mt-2" *ngIf="fc.password.errors&&isSubmitted">
+              <div *ngIf="fc.password.errors.required">should not be empty</div>
+            </div>
+          </div>
+          <div class="mt-7">
+            <label class="inline-flex items-center">
+              <input type="checkbox" class="rounded border-gray-300 text-purple-600 focus:border-purple-300 focus:ring focus:ring-offset-0 focus:ring-purple-200/50" checked />
+              <span class="ml-2 text-sm">Check here that you have agree to <a  class="font-semibold text-purple-600 hover:underline">the terms.</a></span>
+            </label>
+          </div>
+                  <!--Submit button-->
+                  <div class="mt-5 pb-1 pt-1 text-center">
+                    <button mat-raised-button type="submit"
+                      class=" p-3 w-full rounded-md px-8 bg-[#2D2424] text-white">Login</button>
+                    <!--Forgot password link-->
+                    <!-- <a href="#!">Forgot password?</a> -->
+                  </div>
+          <div class="flex items-center text-lg pb-6">
+            <p class="mb-0 mr-2">Don't have an account?</p>
+            <a routerLink="/register" [queryParams]="{returnUrl:returnUrl}"
+              class="text-slate-800 hover:underline py-6">Register Now</a>
+          </div>
+        </form>
       </div>
     </div>
-
   </div>
-</section>
+</div>

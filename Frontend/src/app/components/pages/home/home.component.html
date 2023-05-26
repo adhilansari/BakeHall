@@ -1,5 +1,8 @@
-<div class="bg-gradient-to-br from-yellow-200 via-red-100 to-amber-200 ">
+<div class=" ">
   <app-hero-img *ngIf="hero"></app-hero-img>
+
+  <app-features></app-features>
+
   <app-search></app-search>
   <app-tags></app-tags>
   <app-not-found
@@ -13,7 +16,7 @@
       <div class="" *ngFor="let food of foods">
         <!-- card -->
         <section
-          class="flex  flex-col overflow-hidden text-[#2D2424] rounded-lg shadow-lg min-md:w-80 min-h-[385px] hover:opacity-[0.9]"
+          class="flex  flex-col overflow-hidden text-[#2D242] border-[0.5rem] border-amber-500 border-opacity-60 rounded-md shadow-lg min-md:w-80 min-h-[385px] hover:opacity-[0.9]"
         >
           <a routerLink = "/food/{{ food.id }}">
             <img
@@ -34,16 +37,17 @@
               <div class="flex items-center gap-3">
                 <span
                 ><i
-                  class="fa-solid fa-heart  favorites text-[#e72929] text-2xl{{food.favorite?'':' text-gray-400 text-2xl'}}"
+
+                  class="fa-solid fa-heart  favorites text-[#e72929] text-2xl {{food.favorite?'':' text-gray-400 text-2xl'}}"
                   (click)="changeFavorite(food)"
                 ></i
               ></span>
-              <!-- <span
+              <span
               ><i
-                class="fa-solid fa-cart-shopping favorites text-blue-950 text-2xl{{cart?'':' text-gray-400 text-2xl'}}"
+                class="fa-solid fa-bag-shopping favorites text-orange-900 text-2xl"
                 (click)="addToCart(food)"
               ></i
-            ></span> -->
+            ></span>
               </div>
             </div>
             <div class="stars mb-[0.2rem]">
@@ -51,30 +55,30 @@
                 [value]="food.stars"
                 [totalstars]="5"
                 checkedcolor="red"
-                uncheckedcolor="black"
+                uncheckedcolor="white"
                 size="22px"
-                [readonly]="true"
+                [readonly]="false"
               ></star-rating>
             </div>
-            <div class="flex justify-between items-start">
-              <div class="">
+            <div class="">
                 <span
-                  class="rounded-[2rem]  bg-slate-200 inline-block text-[0.8rem] text-gray-600 mr-[0.3rem] py-[0.1rem] px-[0.5rem] mt-[0.2rem]"
-                  *ngFor="let origin of food.origins"
+                class="rounded-[2rem]  bg-slate-200 inline-block text-[0.9rem] text-gray-600 mr-[0.3rem] py-[0.2rem] px-[0.5rem] mt-[0.2rem]"
+                *ngFor="let origin of food.origins"
                 >
-                  {{ origin }}
-                </span>
-              </div>
+                {{ origin }}
+              </span>
+            </div>
+            <div class="flex justify-between mt-[0.7rem] p-2 items-start">
               <div
-                class="cook-time rounded-[2rem] bg-lime-200 inline-block text-[0.9rem] text-gray-600 mr-[0.3rem] py-[0.2rem] px-[0.5rem] mt-[0.2rem]"
+                class="cook-time  w-fit rounded-[2rem] bg-lime-200 inline-block text-[0.9rem] text-gray-600 mr-[0.3rem] py-[0.2rem] px-[0.5rem]"
               >
                 <span>🕐</span> {{ food.cookTime }}
               </div>
-            </div>
-            <div
-              class="price left-[0.9rem] pb-[0.3rem] px-0 text-[#414141] mt-[0.7rem] text-[1.1rem]"
-            >
+              <div
+              class="price left-[0.9rem] pb-[0.3rem] px-0 text-[#414141] text-[1.1rem] w-fit inline-block t  mr-[0.3rem] py-[0.2rem] ]"
+              >
               <span>{{ food.price | currency }}</span>
+            </div>
             </div>
           </section>
 

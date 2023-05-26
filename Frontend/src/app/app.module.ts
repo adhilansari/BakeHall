@@ -31,6 +31,7 @@ import { RouterModule} from '@angular/router'
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { AdminComponent } from './components/pages/admin/admin.component';
 import { OrderTrackPageComponent } from './components/pages/order-track-page/order-track-page.component';
+import { FeaturesComponent } from './components/partials/features/features.component';
 
 
 
@@ -56,6 +57,7 @@ import { OrderTrackPageComponent } from './components/pages/order-track-page/ord
     HeroImgComponent,
     AdminComponent,
     OrderTrackPageComponent,
+    FeaturesComponent,
 
 
   ],
@@ -70,7 +72,7 @@ import { OrderTrackPageComponent } from './components/pages/order-track-page/ord
     RouterModule,
     ToastrModule.forRoot({
       timeOut:4000,
-      positionClass:'toast-bottom-right',
+      positionClass:'toast-top-right',
       easing:'ease-in',
       easeTime:1000,
       newestOnTop:false

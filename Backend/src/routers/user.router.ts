@@ -35,7 +35,7 @@ router.post('/register', asyncHandler(
     async (req, res) => {
         const { name, email, password, address } = req.body
         const user = await UserModel.findOne({ email });
-        if (user) {
+        if (user && (await bcrypt.compare(password,user.password    ))) {
             res.status(400).send('User is already exist, please login!')
             return;
         }
@@ -45,7 +45,7 @@ router.post('/register', asyncHandler(
         const newUser: User = {
             id: '',
             name,
-            email: email.toString().toLowerCase(),
+            email,
             password: encryptedPassword,
             address,
             isAdmin: false

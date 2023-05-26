@@ -12,10 +12,6 @@ import { ToastrService } from 'ngx-toastr';
   providedIn: 'root'
 })
 export class FoodService {
-  // private socket: any;
-  // connect(): void {
-  //   this.socket = io('http://localhost:5000');
-  // }
   private foodSubject = new BehaviorSubject<Food>(new Food)
 
 

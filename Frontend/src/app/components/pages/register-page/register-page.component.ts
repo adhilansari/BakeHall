@@ -41,6 +41,8 @@ export class RegisterPageComponent implements OnInit{
   }
 
   submit(){
+    console.log('jjijiusdfhn');
+
     this.isSubmitted=true
     if(this.registerForm.invalid) return;
 
@@ -54,6 +56,7 @@ export class RegisterPageComponent implements OnInit{
       address:FV.address
     }
 
+    console.log(user);
     this.userService.register(user).subscribe(_ =>{
       this.router.navigateByUrl(this.returnUrl)
     })

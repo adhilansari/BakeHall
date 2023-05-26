@@ -22,6 +22,7 @@ export class AdminComponent {
   allFoods: boolean = true;
   foodsObservable!: Observable<Food[]>;
   panelName:string='Add';
+  selectedFile: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -37,7 +38,7 @@ export class AdminComponent {
   }
 
   changePanel(){
-    this.foodForm.reset()
+    // this.foodForm.reset()
     this.panelName='Edit'?'Add':'Edit'
     this.panel=true
   }
@@ -57,6 +58,10 @@ export class AdminComponent {
     return this.foodForm.controls;
   }
 
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+  }
+
   Submit() {
     if (this.foodForm.invalid) {
       this.toastr.warning('please fill the fields');
@@ -65,8 +70,10 @@ export class AdminComponent {
 
 
     const FV = this.foodForm.value;
-    const startIndex = FV.image.lastIndexOf('\\') + 1;
-    const fileName = FV.image.substr(startIndex);
+
+
+    // const startIndex = FV.image.lastIndexOf('\\') + 1;
+    // const fileName = FV.image.substr(startIndex);
 
 
 

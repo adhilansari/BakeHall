@@ -9,13 +9,21 @@
   @import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
 @import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
 
+body{
+  background-image:url(../src/assets/path12.png);
+  background-attachment: fixed;
+
+}
+
 @layer components {
 
   body {
     @apply scroll-smooth
+
   }
 
 }
+
 
 *{
   box-sizing: border-box;

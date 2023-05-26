@@ -16,7 +16,8 @@ export class HeaderComponent {
   food!:Food
   constructor(cartService:CartService,private userService:UserService,private router:Router) {
     cartService.getCartObservable().subscribe((newCart) => {
-      this.cartQuantity = newCart.totalCount;
+      this.cartQuantity = newCart.items.length;
+
     })
 
     userService.userObservable.subscribe((newUser) => {

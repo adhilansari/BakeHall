@@ -52,8 +52,8 @@ export class HomeComponent {
   }
 
   addToCart(food:Food){
-    this.cart=!this.cart
-    this.cartService.addToCart(food);
+    this.cartService.addToCart(food)
   }
+
 
 }

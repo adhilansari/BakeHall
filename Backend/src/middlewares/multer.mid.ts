@@ -1,7 +1,7 @@
 import multer from "multer";
 
 //file upload folder
-const DIR = '../images';
+const DIR = './images';
 
 const storageEngine = multer.diskStorage({
     destination:(req,file,cb)=>{
@@ -11,7 +11,6 @@ const storageEngine = multer.diskStorage({
         const fileName =  file.originalname.toLocaleLowerCase().split(' ').join('_')
         cb(null,fileName)
     },
-    
     
 });
 

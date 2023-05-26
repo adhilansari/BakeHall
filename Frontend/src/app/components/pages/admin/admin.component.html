@@ -112,9 +112,11 @@
                   <label for="" class="font-medium inline-block mb-3 text-sm uppercase">Image</label>
                   <div class="relative mb-4">
                     <span class="mt-2 text-base leading-normal">Select a file</span>
-                    <input formControlName="image" type='file'
+                    <input formControlName="image" type='file' name="image" (change)="onFileSelected($event)" accept="image/*"
                       class="w-full px-4 py-2 focus:outline-none ring-1  rounded-md bg-white" />
                   </div>
+
+
 
                 </form>
 

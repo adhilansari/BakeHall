@@ -20,7 +20,7 @@ constructor(private http:HttpClient, private orderService:OrderService,private c
 }
 
 onCheckout():void{
-  this.http.post('http://localhost:5000/checkout',{
+  this.http.post('https://bake-hall.onrender.com/checkout',{
     items:this.order
 
   }).subscribe(async (res:any)=>{
