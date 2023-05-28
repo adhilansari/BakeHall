@@ -6,12 +6,12 @@
       </div>
           <p class="mt-2 text- md:text-lg">Our job is to filling your tummy with delicious food and with fast and free delivery</p>
     </div>
-    <div class="hidden sm:block order-1 lg:order-2 w-full shadow-2xl  bg-transparent text-[#2D2424] border-[10px] rounded-lg with-conic-gradient " >
+    <div class=" md:order-1 lg:order-2 w-full shadow-2xl  bg-transparent text-[#2D2424] border-[10px] rounded-lg with-conic-gradient overflow-hidden" >
       <owl-carousel-o [options]="customOptions" >
 
         <ng-container *ngFor="let slide of foods">
           <ng-template class=" " carouselSlide [id]="slide.id" >
-            <img [src]="slide.imageUrl"routerLink="/food/{{ slide.id }}" class="h-80 w-80 object-center lg:w-[500px] lg:h-[500px]" [alt]="slide.id" [title]="slide.id">
+            <img [src]="slide.imageUrl"routerLink="/food/{{ slide.id }}" class="h-36 w-36 sm:h-52 sm:w-52 md:h-80 md:w-80 object-center lg:w-[500px] lg:h-[500px]" [alt]="slide.id" [title]="slide.id">
           </ng-template>
         </ng-container>
 

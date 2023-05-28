@@ -13,7 +13,7 @@ export interface User{
 
 export const UserSchema = new Schema<User>({
     name: {type: String, required: true},
-    email: {type: String, required: true, unique: true},
+    email: { type: String, require: true, index:true, unique:true,sparse:true},
     password: {type: String, required: true},
     address: {type: String, required: true},
     isAdmin: {type: Boolean, required: true},

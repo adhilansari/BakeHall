@@ -1,6 +1,4 @@
-<div
-  class="relative min-h-[calc(100vh-58.61px)] flex justify-center items-center bg-gradient-to-br from-yellow-200 via-red-100 to-amber-200 py-28 sm:py-0"
->
+<div class="relative min-h-[calc(100vh-58.61px)] flex justify-center items-center py-28 sm:py-0">
   <div class="p-4 sm:p-8 flex-1 w-[280px] min-w-[250px] relative">
     <div class="sm:max-w-[420px] bg-white rounded-lg mx-auto">
       <div class="px-5 sm:px-10 pt-8 pb-8 rounded-lg shadow-xl">
@@ -10,29 +8,25 @@
         </div>
         <div class="flex items-center justify-around mt-6">
           <div
-            class="w-14 h-14 text-center rounded-full bg-blue-500 text-white saturate-200 transition-all hover:bg-blue-600"
-          >
+            class="w-14 h-14 text-center rounded-full bg-blue-500 text-white saturate-200 transition-all hover:bg-blue-600">
             <a class="block mt-4">
               <i class="fab fa-facebook-f fa-lg"></i>
             </a>
           </div>
           <div
-            class="w-14 h-14 text-center rounded-full bg-red-500 text-white saturate-100 transition-all hover:bg-red-600"
-          >
+            class="w-14 h-14 text-center rounded-full bg-red-500 text-white saturate-100 transition-all hover:bg-red-600">
             <a class="block mt-4">
               <i class="fab fa-google fa-lg"></i>
             </a>
           </div>
           <div
-            class="w-14 h-14 text-center rounded-full bg-indigo-500 text-white saturate-100 transition-all hover:bg-indigo-600"
-          >
+            class="w-14 h-14 text-center rounded-full bg-indigo-500 text-white saturate-100 transition-all hover:bg-indigo-600">
             <a class="block mt-4">
               <i class="fab fa-twitch fa-lg"></i>
             </a>
           </div>
           <div
-            class="w-14 h-14 text-center rounded-full bg-green-500 text-white saturate-100 transition-all hover:bg-green-600"
-          >
+            class="w-14 h-14 text-center rounded-full bg-green-500 text-white saturate-100 transition-all hover:bg-green-600">
             <a class="block mt-4">
               <i class="fab fa-line fa-lg"></i>
             </a>
@@ -46,27 +40,17 @@
         <form [formGroup]="registerForm" (ngSubmit)="submit()">
           <!--Username input-->
           <div class="relative">
-            <input
-              id="name"
-              name="name"
-              type="name"
-              formControlName="name"
+            <input id="name" name="name" type="name" formControlName="name"
               class="peer w-full px-0.5 border-0 border-b-2 border-gray-300 placeholder-transparent focus:outline-none focus:border-purple-600"
-              placeholder="Adhil Ansari"
-            />
-            <label
-              for="email"
-              class="absolute left-0 -top-7 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-1 peer-focus:-top-6 peer-focus:text-purple-600 peer-focus:text-sm"
-              >Full Name</label
-            >
+              placeholder="Adhil Ansari" />
+            <label for="email"
+              class="absolute left-0 -top-7 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-1 peer-focus:-top-6 peer-focus:text-purple-600 peer-focus:text-sm">Full
+              Name</label>
             <div class=" " *ngIf="fc.name.errors && isSubmitted">
               <div class="text-red-600 text-lg" *ngIf="fc.name.errors.required">
                 should not be empty
               </div>
-              <div
-                class="text-red-600 text-lg"
-                *ngIf="fc.name.errors.minlength"
-              >
+              <div class="text-red-600 text-lg" *ngIf="fc.name.errors.minlength">
                 It must be at least 4 characters in length
               </div>
             </div>
@@ -74,23 +58,12 @@
           <!--Email input-->
 
           <div class="mt-9 relative">
-            <input
-              id="email"
-              name="email"
-              type="email"
-              formControlName="email"
+            <input id="email" name="email" type="email" formControlName="email"
               class="peer w-full px-0.5 border-0 border-b-2 border-gray-300 placeholder-transparent focus:outline-none focus:border-purple-600"
-              placeholder="user@gmail.com"
-            />
-            <label
-              for="email"
-              class="absolute left-0 -top-7 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-1 peer-focus:-top-6 peer-focus:text-purple-600 peer-focus:text-sm"
-              >Email</label
-            >
-            <div
-              class="text-red-600 flex gap-2 mt-2"
-              *ngIf="fc.email.errors && isSubmitted"
-            >
+              placeholder="user@gmail.com" />
+            <label for="email"
+              class="absolute left-0 -top-7 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-1 peer-focus:-top-6 peer-focus:text-purple-600 peer-focus:text-sm">Email</label>
+            <div class="text-red-600 flex gap-2 mt-2" *ngIf="fc.email.errors && isSubmitted">
               <div *ngIf="fc.email.errors.required">should not be empty</div>
               <div *ngIf="fc.email.errors.email">Email is not correct</div>
             </div>
@@ -98,75 +71,50 @@
           <!--Password input-->
 
           <div class="mt-9 relative">
-            <input
-              type="password"
-              formControlName="password"
-              name="password"
+            <input type="password" formControlName="password" name="password"
               class="peer w-full px-0.5 border-0 border-b-2 border-gray-300 placeholder-transparent focus:outline-none focus:border-purple-600"
-              placeholder="Password"
-            />
-            <label
-              for="password"
-              class="absolute left-0 -top-7 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-1 peer-focus:-top-6 peer-focus:text-purple-600 peer-focus:text-sm"
-              >Password</label
-            >
-            <div
-              class="text-red-600 flex gap-2 mt-2"
-              *ngIf="fc.password.errors && isSubmitted"
-            >
+              placeholder="Password" />
+            <label for="password"
+              class="absolute left-0 -top-7 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-1 peer-focus:-top-6 peer-focus:text-purple-600 peer-focus:text-sm">Password</label>
+            <div class="text-red-600 flex gap-2 mt-2" *ngIf="fc.password.errors && isSubmitted">
               <div *ngIf="fc.password.errors.required">should not be empty</div>
+              <div class="text-red-600 text-lg" *ngIf="fc.password.errors.minlength">
+                It must be at least 5 characters in length
+              </div>
             </div>
           </div>
           <!--confirmPassword input-->
 
           <div class="mt-9 relative">
-            <input
-              type="password"
-              formControlName="confirmPassword"
+            <input type="password" formControlName="confirmPassword"
               class="peer w-full px-0.5 border-0 border-b-2 border-gray-300 placeholder-transparent focus:outline-none focus:border-purple-600"
-              placeholder="Password"
-            />
-            <label
-              for="password"
-              class="absolute left-0 -top-7 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-1 peer-focus:-top-6 peer-focus:text-purple-600 peer-focus:text-sm"
-              >Confirm Password</label
-            >
-            <div *ngIf="fc.password.errors && isSubmitted">
-              <div
-                class="text-red-600 text-lg"
-                *ngIf="fc.confirmPassword.errors"
-              >
-                should not be empty
+              placeholder="Password" />
+            <label for="password"
+              class="absolute left-0 -top-7 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-1 peer-focus:-top-6 peer-focus:text-purple-600 peer-focus:text-sm">Confirm
+              Password</label>
+            <div *ngIf="fc.confirmPassword.errors && isSubmitted">
+              <div class="text-red-600 text-lg" *ngIf="fc.confirmPassword.errors">
+                should not be empty or password not correct
               </div>
             </div>
           </div>
           <!--address input-->
-            <div class="mt-9 relative">
-              <input
-                id="address"
-                name="address"
-                type="address"
-                formControlName="address"
-                class="peer w-full px-0.5 border-0 border-b-2 border-gray-300 placeholder-transparent focus:outline-none focus:border-purple-600"
-                placeholder="Adhil Ansari"
-              />
-              <label
-                for="address"
-                class="absolute left-0 -top-7 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-1 peer-focus:-top-6 peer-focus:text-purple-600 peer-focus:text-sm"
-                >Full Address</label
-              >
-              <div class=" " *ngIf="fc.address.errors && isSubmitted">
-                <div class="text-red-600 text-lg" *ngIf="fc.address.errors.required">
-                  should not be empty
-                </div>
-                <div
-                  class="text-red-600 text-lg"
-                  *ngIf="fc.address.errors.minlength"
-                >
+          <div class="mt-9 relative">
+            <input id="address" name="address" type="address" formControlName="address"
+              class="peer w-full px-0.5 border-0 border-b-2 border-gray-300 placeholder-transparent focus:outline-none focus:border-purple-600"
+              placeholder="Adhil Ansari" />
+            <label for="address"
+              class="absolute left-0 -top-7 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-1 peer-focus:-top-6 peer-focus:text-purple-600 peer-focus:text-sm">Full
+              Address</label>
+            <div class=" " *ngIf="fc.address.errors && isSubmitted">
+              <div class="text-red-600 text-lg" *ngIf="fc.address.errors.required">
+                should not be empty
+              </div>
+              <div class="text-red-600 text-lg" *ngIf="fc.address.errors.minlength">
                 It must be at least 7 characters in length
-                </div>
               </div>
             </div>
+          </div>
 
           <!--
           <div class="mt-9">
@@ -178,24 +126,16 @@
 
           <!--Submit button-->
           <div class="mt-5 pb-1 pt-1 text-center">
-            <button
-              mat-raised-button
-              type="submit"
-              class="p-3 w-full rounded-md px-8 bg-[#2D2424] text-white"
-              [disabled]="registerForm.invalid"
-            >
+            <button mat-raised-button type="submit" class="p-3 w-full rounded-md px-8 bg-[#2D2424] text-white"
+              (click)="submit()">
               Register
             </button>
           </div>
           <!--Login button-->
           <div class="flex items-center text-lg mb-2">
             <p class="mb-0 mr-2">Already a user?</p>
-            <a
-              routerLink="/login"
-              [queryParams]="{ returnUrl: returnUrl }"
-              class="text-slate-800 hover:underline py-6"
-              >Login Now</a
-            >
+            <a routerLink="/login" [queryParams]="{ returnUrl: returnUrl }"
+              class="text-slate-800 hover:underline py-6">Login Now</a>
           </div>
         </form>
       </div>

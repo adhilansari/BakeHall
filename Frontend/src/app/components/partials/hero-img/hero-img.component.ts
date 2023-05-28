@@ -20,7 +20,6 @@ export class HeroImgComponent {
 
     foodsObservable.subscribe((serverFoods) => {
       this.foods = serverFoods;
-
   })}
 
 

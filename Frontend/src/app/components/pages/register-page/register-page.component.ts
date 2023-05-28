@@ -23,30 +23,27 @@ export class RegisterPageComponent implements OnInit{
     private router: Router
   ) {}
   ngOnInit(): void {
-    this.registerForm=this.formBuilder.group({
-      name:['',[Validators.required,Validators.minLength(4)]],
-      email:['',[Validators.required,Validators.email]],
-      password:['',[Validators.required,Validators.minLength(5)]],
-      confirmPassword:['',[Validators.required,]],
-      address:['',[Validators.required,Validators.minLength(7)]]
-    },
-    {
-      Validators:PasswordsMatchValidator('password','confirmPassword')
-    })
+    this.registerForm = this.formBuilder.group({
+      name: ['', [Validators.required, Validators.minLength(5)]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(5)]],
+      confirmPassword: ['', Validators.required],
+      address: ['', [Validators.required, Validators.minLength(10)]]
+    },{
+      validators: PasswordsMatchValidator('password','confirmPassword')
+    });
 
-    this.returnUrl=this.activatedRoute.snapshot.queryParams.returnUrl;
+    this.returnUrl= this.activatedRoute.snapshot.queryParams.returnUrl;
   }
   get fc(){
     return this.registerForm.controls
   }
 
   submit(){
-    console.log('jjijiusdfhn');
+    const FV= this.registerForm.value
 
     this.isSubmitted=true
     if(this.registerForm.invalid) return;
-
-    const FV= this.registerForm.value
 
     const user:IUserRegister={
       name:FV.name,
@@ -56,11 +53,9 @@ export class RegisterPageComponent implements OnInit{
       address:FV.address
     }
 
-    console.log(user);
-    this.userService.register(user).subscribe(_ =>{
-      this.router.navigateByUrl(this.returnUrl)
+    this.userService.register(user).subscribe(_ => {
+      this.router.navigateByUrl(this.returnUrl);
     })
-
 
   }
 }

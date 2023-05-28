@@ -51,22 +51,39 @@ export class UserService {
     return new User();
   }
 
-  register(userRegister:IUserRegister):Observable<User>{
-    return this.http.post<User>(USER_REGISTER_URL,userRegister).pipe(
+  // register(userRegister:IUserRegister):Observable<User>{
+  //   return this.http.post<User>(USER_REGISTER_URL,userRegister).pipe(
+  //     tap({
+  //       next:(user)=>{
+  //         this.setUserToLocalStorage(user);
+  //         this.userSubject.next(user)
+  //         this.toastr.success(`welcome ${user.name} to BAKE HALL`,
+  //         `Registered Successfully`)
+  //       },
+  //       error:(errorResponse)=>{
+  //         this.toastr.error(errorResponse.error,'Register Failed')
+  //       }
+
+  //     })
+  //   );
+  // }
+
+  register(userRegister:IUserRegister): Observable<User>{
+    return this.http.post<User>(USER_REGISTER_URL, userRegister).pipe(
       tap({
-        next:(user)=>{
+        next: (user) => {
           this.setUserToLocalStorage(user);
-          this.userSubject.next(user)
+          this.userSubject.next(user);
           this.toastr.success(`welcome ${user.name} to BAKE HALL`,
           `Registered Successfully`)
         },
-        error:(errorResponse)=>{
-          this.toastr.error(errorResponse.error,'Register Failed')
+        error: (errorResponse) => {
+                this.toastr.error(errorResponse.error,'Register Failed')
         }
-
       })
-    );
+    )
   }
+
 
    logOut(){
     this.userSubject.next(new User())
