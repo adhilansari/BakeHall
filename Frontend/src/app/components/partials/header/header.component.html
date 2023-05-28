@@ -2,16 +2,17 @@
   <div class="container flex mx-auto justify-between sm:text-[1.2rem] text-white">
     <a class=" hover:bg-[#5C3D2E] hover:cursor-pointer font-bold p-4" routerLink="/">BAKE HALL</a>
     <nav>
-      <ul class="flex m-0">
-        <li><a class=" p-4 inline-block hover:bg-[#5C3D2E] hover:cursor-pointer" routerLink="/login" *ngIf="!user.token">login</a></li>
-        <li><a class=" p-4 inline-block hover:bg-[#5C3D2E] hover:cursor-pointer" routerLink="/admin" *ngIf="user.isAdmin">Dashboard</a></li>
-        <li><a class=" p-4 inline-block hover:bg-[#5C3D2E] hover:cursor-pointer" (click)="Favorites()">Wishlist</a></li>
+      <ul class="flex gap-1 m-0">
+        <li class="hidden sm:block"><a class="p-2 py-4 inline-block hover:bg-[#5C3D2E] hover:cursor-pointer" routerLink="/admin" *ngIf="user.isAdmin">Dashboard</a></li>
+        <li><a class="p-2 py-4 inline-block hover:bg-[#5C3D2E] hover:cursor-pointer" routerLink="/login" *ngIf="!user.token">login</a></li>
+        <li><a class="p-2 py-4 inline-block hover:bg-[#5C3D2E] hover:cursor-pointer" (click)="Favorites()">Wishlist</a></li>
 
         <li class="relative menu-container" *ngIf="isAuth">
-          <a class=" p-4 inline-block hover:bg-[#5C3D2E] hover:cursor-pointer" routerLink="/">{{user.name}}</a>
+          <a class="p-2 py-4 inline-block hover:bg-[#5C3D2E] hover:cursor-pointer" routerLink="/">{{user.name}}</a>
           <!-- add else -->
           <div class="absolute z-[1] hidden bg-[#2D2424] menu ">
             <a class=" w-full min-w-[8rem] p-4 inline-block hover:bg-[#5C3D2E] hover:cursor-pointer" routerLink="/profile">Profile</a>
+            <a class="sm:hidden p-4 inline-block hover:bg-[#5C3D2E] hover:cursor-pointer" routerLink="/admin" *ngIf="user.isAdmin">Dashboard</a>
             <a class=" w-full min-w-[8rem] p-4 inline-block hover:bg-[#5C3D2E] hover:cursor-pointer" routerLink="/orders">Orders</a>
             <a class=" w-full min-w-[8rem] p-4 inline-block hover:bg-[#5C3D2E] hover:cursor-pointer" (click)="logOut()">Log Out</a>
           </div>

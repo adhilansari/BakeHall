@@ -1,5 +1,5 @@
 <app-not-found [visible]="!food" notFoundMessage="Food not Found"  resentLinkText="Back to Homepage"></app-not-found>
-<div class="flex items-center h-screen justify-center px-5 py-24 mx-auto bg-[#5C3D2E]" *ngIf="food">
+<div class="flex items-center h-screen justify-center px-5 py-24 mx-auto" *ngIf="food">
     <div class="lg:w-4/5 mx-auto flex items-center justify-center flex-wrap bg-[#E0C097] rounded-lg shadow-xl  overflow-hidden px-4 py-2">
       <img alt="{{food.name}}" class="lg:w-1/2 w-full  md:h-[35rem] object-cover " src="{{food.imageUrl}}">
       <div class="flex flex-col  border-white lg:w-1/2 w-full  lg:pl-10 lg:py-6 lg:mt-0">

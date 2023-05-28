@@ -1,3 +1,5 @@
 <app-loading></app-loading>
 <app-header></app-header>
-<router-outlet></router-outlet>
+<main [@fadeInOut]="outletRef.isActivated ? outletRef.activatedRoute : ''">
+  <router-outlet #outletRef="outlet"></router-outlet>
+</main>

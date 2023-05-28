@@ -8,9 +8,9 @@ import { RegisterPageComponent } from './components/pages/register-page/register
 import { CheckoutPageComponent } from './components/pages/checkout-page/checkout-page.component';
 import { AuthGuard } from './auth/guards/auth.guard';
 import { PaymentPageComponent } from './components/pages/payment-page/payment-page.component';
-import { AdminComponent } from './components/pages/admin/admin.component';
 import { AdminGuard } from './auth/guards/admin.guard';
 import { OrderTrackPageComponent } from './components/pages/order-track-page/order-track-page.component';
+// import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -24,8 +24,9 @@ const routes: Routes = [
   {path:'register',component:RegisterPageComponent},
   {path:'order',component:CheckoutPageComponent,canActivate:[AuthGuard]},
   {path:'payment',component:PaymentPageComponent,canActivate:[AuthGuard]},
-  {path:'admin',component:AdminComponent,canActivate:[AdminGuard]},
-  {path:'track/:orderId',component:OrderTrackPageComponent,canActivate:[AuthGuard]}
+  // {path:'admin',component:AdminComponent,canActivate:[AdminGuard]},
+  {path:'track/:orderId',component:OrderTrackPageComponent,canActivate:[AuthGuard]},
+  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) }
 
 ];
 

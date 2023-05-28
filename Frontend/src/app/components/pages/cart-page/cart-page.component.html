@@ -20,14 +20,14 @@
       <li *ngFor="let cartItem of cart.items"
         class="sm:flex  justify-center  gap-4 items-center w-full lg:flex-nowrap border-b-[1px] border-solid border-[#e4e4e4] last:border-none shadow-xl  px-2">
         <div class="flex justify-center p-[1rem]">
-          <img class="h-full w-full lg:w-[7rem] rounded-full lg:h-[5rem]  object-contain"
+          <img class="h-full w-full lg:w-[7rem] rounded-md lg:h-[5rem]  object-contain"
             [src]="cartItem.food.imageUrl" [alt]="cartItem.food.name">
         </div>
         <div class="flex justify-around w-full space-y-1 flex-col  md:flex-wrap py-2 lg:flex-row">
-          <div class="flex items-center justify-center p-[1rem] bg-slate-100 rounded-full lg:w-[150px] truncate text-center">
+          <div class="flex items-center justify-center p-[1rem] bg-slate-100 rounded-md lg:w-[150px] truncate text-center">
             <a routerLink="/food/{{cartItem.food.id}}">{{cartItem.food.name}}</a>
           </div>
-          <div class="flex items-center justify-center p-[1rem] bg-slate-100 rounded-full lg:w-[85px] text-center overflow-auto">
+          <div class="flex items-center justify-center p-[1rem] bg-slate-100 rounded-md lg:w-[85px] text-center overflow-auto">
             <select data-te-select-init #quantitySelect [value]="cartItem.quantity"
               (change)="changeQuantity(cartItem,quantitySelect.value)"
               class="w-[3rem] text-center outline-none bg-transparent text-[1.1rem] font-thin">
@@ -37,10 +37,10 @@
             </select>
 
           </div>
-          <div class="flex items-center justify-center p-[1rem] bg-slate-100 rounded-full lg:w-[90px] text-center overflow-auto">
+          <div class="flex items-center justify-center p-[1rem] bg-slate-100 rounded-md lg:w-[90px] text-center overflow-auto">
             {{cartItem.price|currency}}
           </div>
-          <div class="flex items-center justify-center p-[1rem] bg-slate-100 rounded-full lg:w-[94px] text-center overflow-auto">
+          <div class="flex items-center justify-center p-[1rem] bg-slate-100 rounded-md lg:w-[94px] text-center overflow-auto">
             <button
               class="remove-button rounded-[1rem] border-none  text-[#e72929] opacity-[0.7] outline-none hover:opacity-[1] cursor-pointer"
               (click)="removeFromCart(cartItem)">Remove</button>
@@ -75,7 +75,7 @@
             {{cart.totalPrice|currency}}</p>
         </div>
         <button routerLink="/order"
-          class="text-base leading-none w-full py-5 bg-[#e72929] rounded-full opacity-[0.7] hover:opacity-[1] focus:outline-none text-white">Proceed
+          class="text-base leading-none w-full py-5 bg-[#e72929] rounded-md opacity-[0.7] hover:opacity-[1] focus:outline-none text-white">Proceed
           to Checkout</button>
       </div>
     </div>

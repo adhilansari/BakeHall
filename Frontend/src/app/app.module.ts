@@ -71,11 +71,12 @@ import { FeaturesComponent } from './components/partials/features/features.compo
     CarouselModule,
     RouterModule,
     ToastrModule.forRoot({
-      timeOut:4000,
+      timeOut:2000,
       positionClass:'toast-top-right',
       easing:'ease-in',
-      easeTime:1000,
-      newestOnTop:false
+      easeTime:500,
+      newestOnTop:false,
+      progressBar:true
     }),
 
   ],

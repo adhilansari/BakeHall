@@ -1,17 +1,15 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Params } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Food } from '../shared/models/Food';
 import { Observable } from 'rxjs';
-import { FoodService } from 'src/app/services/food.service';
-import { ADMIN_URL } from 'src/app/shared/constants/urls';
-import { Food } from 'src/app/shared/models/Food';
+import { ToastrService } from 'ngx-toastr';
+import { FoodService } from '../services/food.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.scss'],
+  styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent {
   menu: boolean = true;
@@ -50,7 +48,7 @@ export class AdminComponent {
       cookTime: ['', Validators.required],
       tags: ['', Validators.required],
       origins: ['', Validators.required],
-      image: ['', Validators.required],
+      imageUrl: [new FormControl(), Validators.required],
     });
   }
 
@@ -59,8 +57,14 @@ export class AdminComponent {
   }
 
   onFileSelected(event: any) {
-    this.selectedFile = event.target.files[0];
-  }
+
+    // this.selectedFile = event.target.files[0];
+    const reader = new FileReader();
+
+    if (event.target.files && event.target.files.length) {
+      this.selectedFile = event.target.files[0];
+
+  }}
 
   Submit() {
     if (this.foodForm.invalid) {
@@ -83,7 +87,7 @@ export class AdminComponent {
       name: FV.name,
       price: FV.price,
       tags: FV.tags,
-      imageUrl: FV.image.toLocaleLowerCase().split(' ').join('_'),
+      imageUrl: FV.imageUrl.toLocaleLowerCase().split(' ').join('_'),
       origins: FV.origins,
       cookTime: FV.cookTime,
     };
@@ -98,6 +102,8 @@ export class AdminComponent {
 
   }
   update(food: Food) {
+    console.log(food);
+
     this.panelName='Edit'
     this.updateFood = food;
     this.foodForm = this.formBuilder.group({
@@ -106,7 +112,7 @@ export class AdminComponent {
       cookTime: [this.updateFood.cookTime, Validators.required],
       tags: [this.updateFood.tags, Validators.required],
       origins: [this.updateFood.origins, Validators.required],
-      image: [this.updateFood.imageUrl, Validators.required],
+      imageUrl: [this.updateFood.imageUrl, Validators.required],
     });
 
   }
@@ -119,22 +125,36 @@ export class AdminComponent {
       name: FV.name,
       price: FV.price,
       tags: FV.tags,
-      imageUrl: FV.image.toLocaleLowerCase().split(' ').join('_'),
+      imageUrl: FV.imageUrl.toLocaleLowerCase().split(' ').join('_'),
       origins: FV.origins,
       cookTime: FV.cookTime,
     };
 
+
+
     this.http
       .put(`https://bake-hall.onrender.com/api/admin/food/${this.updateFood.id}`, food)
-      .subscribe(() => {
-        this.foodsObservable.subscribe((serverFoods: Food[]) => {
-          this.foods = serverFoods;
-        });
-      });
+      .subscribe({
+        next:() => {
 
-      this.toastr.success('Edited Successfully')
+          this.foodsObservable.subscribe((serverFoods: Food[]) => {
+            this.foods = serverFoods;
+          });
+        },
+        error:error=>{
+          console.log(error);
+
+        },
+        complete:()=>{
+          this.toastr.success('Edited Successfully')
+          }
+
+      }
+      );
+
 
   }
+
 
 
   delete(id: string) {
