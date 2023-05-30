@@ -15,8 +15,8 @@
 // export const ORDER_NEW_FOR_CURRENT_USER_URL = ORDERS_URL+'/newOrderForCurrentUser';
 
 
-export const BASE_URL= 'http://localhost:5000'
-// export const BASE_URL= 'https://bake-hall.onrender.com'
+// export const BASE_URL= 'http://localhost:5000'
+export const BASE_URL= 'https://bake-hall.onrender.com'
 
 
 export const FOODS_URL =`${BASE_URL}/api/foods`;

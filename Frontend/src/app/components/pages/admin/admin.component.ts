@@ -88,11 +88,11 @@ export class AdminComponent {
       cookTime: FV.cookTime,
     };
 
-    this.foodService.createFood(food).subscribe((_) => {
-      this.foodsObservable.subscribe((serverFoods: Food[]) => {
-        this.foods = serverFoods;
-      });
-    });
+    // this.foodService.createFood(food).subscribe((_) => {
+    //   this.foodsObservable.subscribe((serverFoods: Food[]) => {
+    //     this.foods = serverFoods;
+    //   });
+    // });
 
     this.foodForm.reset()
 

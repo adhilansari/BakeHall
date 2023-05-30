@@ -62,8 +62,10 @@ export class FoodService {
     return this.http.put<Food>(FOOD_BY_ID_URL,food)
   }
 
-createFood(FD:any){
-return this.http.post(ADMIN_URL,FD)
+createFood(FD:FormData ):Observable<Food[]>{
+  console.log( FD);
+
+return this.http.post<Food[]>(ADMIN_URL,FD)
 }
 
 

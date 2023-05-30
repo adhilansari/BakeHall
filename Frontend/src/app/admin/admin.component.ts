@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { FoodService } from '../services/food.service';
 import { HttpClient } from '@angular/common/http';
 import { ADMIN_URL } from '../shared/constants/urls';
+import { Type } from '@angular/compiler';
 
 @Component({
   selector: 'app-admin',
@@ -32,15 +33,13 @@ export class AdminComponent {
   ) {
 
     this.foodsObservable = foodService.getAll();
-    console.log(this.foodsObservable);
-
     this.foodsObservable.subscribe((serverFoods: Food[]) => {
       this.foods = serverFoods;
     });
   }
 
   changePanel() {
-    // this.foodForm.reset()
+    this.foodForm.reset()
     this.panelName = 'Edit' ? 'Add' : 'Edit'
     this.panel = true
   }
@@ -80,24 +79,19 @@ export class AdminComponent {
 
     for (const key in value) {
       if (key == 'imageUrl') {
-        FD.append('imgFile', this.selectedImg!, this.selectedImg?.name)
+        FD.append('imgFile', this.selectedImg as any, this.selectedImg?.name)
       }
       else FD.append(key, value[key])
     }
 
-    this.foodService.createFood(FD).subscribe({
-      next: (res: any) => {
-        this.foods = res
-        console.log(typeof(res));
+    this.foodService.createFood(FD).subscribe((res) => {
+      this.foodsObservable.subscribe((serverFoods: Food[]) => {
+        this.foods = serverFoods;
+        this.toastr.success('item added');
+      });
 
-        console.log(this.foods);
-      },
-      error() {
-        console.log(this.error);
-
-      }
-    })
-    // this.foodForm.reset()
+    });
+    this.foodForm.reset()
 
   }
   update(food: Food) {
@@ -152,8 +146,6 @@ export class AdminComponent {
     this.http
       .delete(`${ADMIN_URL}/${id}`)
       .subscribe((res) => {
-        console.log(res,'ghjk');
-
         this.foodsObservable.subscribe((serverFoods: Food[]) => {
           this.foods = serverFoods;
           this.toastr.warning('item deleted');
