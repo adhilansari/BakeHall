@@ -43,23 +43,28 @@ export class FoodService {
 
 /////
 
-createFood(food:any):Observable<Food>{
-  return this.http.post<Food>(ADMIN_URL,food).pipe(
-    tap({
-      next:(food)=>{
-        this.foodSubject.next(food);
-        this.toastr.success(` ${food.name} added successfully`,
-        )
-      },
-      error:(errorResponse)=>{
-        this.toastr.error(errorResponse.error,'Adding food is Failed')
-      }
-    })
-    )
-  }
+// createFood(food:any):Observable<Food>{
+//   return this.http.post<Food>(ADMIN_URL,food).
+//   pipe(
+//     tap({
+//       next:(food)=>{
+//         this.foodSubject.next(food);
+//         this.toastr.success(` ${food.name} added successfully`,
+//         )
+//       },
+//       error:(errorResponse)=>{
+//         this.toastr.error(errorResponse.error,'Adding food is Failed')
+//       }
+//     })
+//     )
+//   }
   changeFavorite(food:Food):Observable<Food>{
     return this.http.put<Food>(FOOD_BY_ID_URL,food)
   }
+
+createFood(FD:any){
+return this.http.post(ADMIN_URL,FD)
+}
 
 
 

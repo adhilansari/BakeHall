@@ -13,7 +13,6 @@ export const PasswordsMatchValidator = (passwordControlName: string,
         }else{
           const errors = confirmPasswordControl.errors;
           if(!errors) return;
-
           delete errors.notMatch;
           confirmPasswordControl.setErrors(errors);
         }

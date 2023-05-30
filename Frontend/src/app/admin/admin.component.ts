@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { FoodService } from '../services/food.service';
 import { HttpClient } from '@angular/common/http';
+import { ADMIN_URL } from '../shared/constants/urls';
 
 @Component({
   selector: 'app-admin',
@@ -19,8 +20,9 @@ export class AdminComponent {
   foods: Food[] = [];
   allFoods: boolean = true;
   foodsObservable!: Observable<Food[]>;
-  panelName:string='Add';
-  selectedFile: any;
+  panelName: string = 'Add';
+  selectedImg?: File;
+  newFile?: File
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,17 +30,19 @@ export class AdminComponent {
     private foodService: FoodService,
     private http: HttpClient
   ) {
+
     this.foodsObservable = foodService.getAll();
+    console.log(this.foodsObservable);
+
     this.foodsObservable.subscribe((serverFoods: Food[]) => {
       this.foods = serverFoods;
-
     });
   }
 
-  changePanel(){
+  changePanel() {
     // this.foodForm.reset()
-    this.panelName='Edit'?'Add':'Edit'
-    this.panel=true
+    this.panelName = 'Edit' ? 'Add' : 'Edit'
+    this.panel = true
   }
 
   ngOnInit(): void {
@@ -48,7 +52,7 @@ export class AdminComponent {
       cookTime: ['', Validators.required],
       tags: ['', Validators.required],
       origins: ['', Validators.required],
-      imageUrl: [new FormControl(), Validators.required],
+      imageUrl: ['', Validators.required],
     });
   }
 
@@ -58,53 +62,47 @@ export class AdminComponent {
 
   onFileSelected(event: any) {
 
-    // this.selectedFile = event.target.files[0];
+    // this.selectedImg = event.target.files[0];
     const reader = new FileReader();
 
     if (event.target.files && event.target.files.length) {
-      this.selectedFile = event.target.files[0];
+      this.selectedImg = (event.target as HTMLInputElement).files?.[0];
+    }
+  }
 
-  }}
-
-  Submit() {
-    if (this.foodForm.invalid) {
+  addFood() {
+    if (this.foodForm.invalid && !this.selectedImg) {
       this.toastr.warning('please fill the fields');
       return;
     }
+    const { value } = this.foodForm
+    const FD = new FormData()
 
+    for (const key in value) {
+      if (key == 'imageUrl') {
+        FD.append('imgFile', this.selectedImg!, this.selectedImg?.name)
+      }
+      else FD.append(key, value[key])
+    }
 
-    const FV = this.foodForm.value;
+    this.foodService.createFood(FD).subscribe({
+      next: (res: any) => {
+        this.foods = res
+        console.log(typeof(res));
 
+        console.log(this.foods);
+      },
+      error() {
+        console.log(this.error);
 
-    // const startIndex = FV.image.lastIndexOf('\\') + 1;
-    // const fileName = FV.image.substr(startIndex);
-
-
-
-    const food: Food = {
-      id: '',
-      stars: 0,
-      name: FV.name,
-      price: FV.price,
-      tags: FV.tags,
-      imageUrl: FV.imageUrl.toLocaleLowerCase().split(' ').join('_'),
-      origins: FV.origins,
-      cookTime: FV.cookTime,
-    };
-
-    this.foodService.createFood(food).subscribe((_) => {
-      this.foodsObservable.subscribe((serverFoods: Food[]) => {
-        this.foods = serverFoods;
-      });
-    });
-
-    this.foodForm.reset()
+      }
+    })
+    // this.foodForm.reset()
 
   }
   update(food: Food) {
-    console.log(food);
 
-    this.panelName='Edit'
+    this.panelName = 'Edit'
     this.updateFood = food;
     this.foodForm = this.formBuilder.group({
       name: [this.updateFood.name, Validators.required],
@@ -130,41 +128,37 @@ export class AdminComponent {
       cookTime: FV.cookTime,
     };
 
-
-
     this.http
-      .put(`https://bake-hall.onrender.com/api/admin/food/${this.updateFood.id}`, food)
+      .put(`${ADMIN_URL}/${this.updateFood.id}`, food)
       .subscribe({
-        next:() => {
+        next: () => {
 
           this.foodsObservable.subscribe((serverFoods: Food[]) => {
             this.foods = serverFoods;
           });
         },
-        error:error=>{
+        error: error => {
           console.log(error);
 
         },
-        complete:()=>{
+        complete: () => {
           this.toastr.success('Edited Successfully')
-          }
-
+        }
       }
       );
-
-
   }
-
-
 
   delete(id: string) {
     this.http
-      .delete(`https://bake-hall.onrender.com/api/admin/food/${id}`)
+      .delete(`${ADMIN_URL}/${id}`)
       .subscribe((res) => {
+        console.log(res,'ghjk');
+
         this.foodsObservable.subscribe((serverFoods: Food[]) => {
           this.foods = serverFoods;
+          this.toastr.warning('item deleted');
         });
+
       });
-    this.toastr.warning('item deleted');
   }
 }

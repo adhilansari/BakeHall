@@ -11,7 +11,7 @@
 
         <ng-container *ngFor="let slide of foods">
           <ng-template class=" " carouselSlide [id]="slide.id" >
-            <img [src]="slide.imageUrl"routerLink="/food/{{ slide.id }}" class="h-36 w-36 sm:h-52 sm:w-52 md:h-80 md:w-80 object-center lg:w-[500px] lg:h-[500px]" [alt]="slide.id" [title]="slide.id">
+            <img [src]="slide.imageUrl"routerLink="/food/{{ slide.id }}" class="h-36 w-36 sm:h-52 sm:w-52 md:h-80 md:w-80 lg:w-[500px] lg:h-[500px] object-cover" [alt]="slide.id" [title]="slide.id">
           </ng-template>
         </ng-container>
 

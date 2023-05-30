@@ -32,12 +32,11 @@ router.post("/login", asyncHandler(
 ));
 
 router.post('/register', asyncHandler(
-    async (req, res) => {
+    async (req:any, res:any) => {
         const { name, email, password, address } = req.body
         const user = await UserModel.findOne({ email });
-        if (user && (await bcrypt.compare(password,user.password    ))) {
-            res.status(400).send('User is already exist, please login!')
-            return;
+        if (user ) {
+            return res.status(400).send('User is already exist, please login!')
         }
 
         const encryptedPassword = await bcrypt.hash(password, 10);

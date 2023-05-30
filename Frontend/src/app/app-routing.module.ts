@@ -26,7 +26,7 @@ const routes: Routes = [
   {path:'payment',component:PaymentPageComponent,canActivate:[AuthGuard]},
   // {path:'admin',component:AdminComponent,canActivate:[AdminGuard]},
   {path:'track/:orderId',component:OrderTrackPageComponent,canActivate:[AuthGuard]},
-  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) }
+  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),canActivate:[AdminGuard] }
 
 ];
 

@@ -84,8 +84,8 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET);
               })),
 
                mode: "payment",
-               success_url: "http://localhost:5000/success.html",
-               cancel_url: "http://localhost:5000/cancel.html",
+               success_url: "https://bake-hall.onrender.com/success.html",
+               cancel_url: "https://bake-hall.onrender.com/cancel.html",
 
             });
 

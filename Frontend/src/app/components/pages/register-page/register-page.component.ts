@@ -24,7 +24,7 @@ export class RegisterPageComponent implements OnInit{
   ) {}
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.minLength(5)]],
+      name: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(5)]],
       confirmPassword: ['', Validators.required],
@@ -44,18 +44,15 @@ export class RegisterPageComponent implements OnInit{
 
     this.isSubmitted=true
     if(this.registerForm.invalid) return;
-
-    const user:IUserRegister={
+    const newUser:IUserRegister={
       name:FV.name,
       email:FV.email,
       password:FV.password,
       confirmPassword:FV.confirmPassword,
       address:FV.address
     }
-
-    this.userService.register(user).subscribe(_ => {
+    this.userService.register(newUser).subscribe(_ => {
       this.router.navigateByUrl(this.returnUrl);
     })
-
   }
 }
