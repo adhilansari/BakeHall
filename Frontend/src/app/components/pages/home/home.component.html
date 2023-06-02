@@ -16,18 +16,18 @@
       <div class="" *ngFor="let food of foods">
         <!-- card -->
         <section
-          class="flex flex-col overflow-hidden text-[#2D242] border-[0.2rem] sm:border-[0.5rem] border-amber-500 border-opacity-60 rounded-md shadow-lg w-full sm:min-w-fit sm:max-w-fit max-h-[385px] sm:min-h-[385px] hover:opacity-[0.9] "
+          class="flex flex-col overflow-hidden text-[#2D242] border-[0.2rem] sm:border-[0.5rem] border-amber-500 border-opacity-60 rounded-md shadow-lg min-w-full sm:min-w-fit sm:max-w-fit max-h-[385px] sm:min-h-[385px] hover:opacity-[0.9] "
         >
           <a routerLink = "/food/{{ food.id }}">
             <img
               alt="Placeholder"
-              class=" w-[10.5rem] h-[13rem] sm:min-w-[272px] sm:max-w-[272px] object-cover min-h-[195px] max-h-[195px] hover:ease-linear hover:scale-105"
+              class=" w-[16rem] h-[13rem] sm:min-w-[272px] sm:max-w-[272px] object-cover min-h-[195px] max-h-[195px] hover:ease-linear hover:scale-105"
               src="{{ food.imageUrl}}"
               [alt]="food.name"
             />
           </a>
 
-          <section class="flex flex-col leading-tight p-2 bg-secondary_bg md:p-4  w-[10.5rem] h-[4rem] sm:min-w-[272px] sm:max-w-[272px] sm:min-h-[199px] max-h-[199px]">
+          <section class="flex flex-col leading-tight p-2 bg-secondary_bg md:p-4  w-[16rem] h-[4rem] sm:min-w-[272px] sm:max-w-[272px] sm:min-h-[199px] max-h-[199px]">
             <div class="flex items-center  justify-between leading-tight">
               <h1 class="text-lg line-clamp-2">
                 <a class="no-underline" href="#">
