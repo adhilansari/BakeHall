@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FoodService } from 'src/app/services/food.service';
 import { Food } from 'src/app/shared/models/Food';
@@ -11,6 +11,8 @@ import {  OwlOptions } from 'ngx-owl-carousel-o';
   styleUrls: ['./hero-img.component.scss']
 })
 export class HeroImgComponent {
+  @Input() visible:boolean=false
+
   foods: Food[] = []
 
   constructor(private foodService: FoodService) {

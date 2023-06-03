@@ -1,8 +1,8 @@
 
-<div class="flex flex-col  items-center justify-center border-t border-gray-200 text-center pt-8" *ngIf="visible">
+<div class="flex flex-col items-center justify-center h-screen pt-8 text-center border-t border-gray-200" *ngIf="visible">
   <h1 class="text-3xl font-bold text-purple-400">{{notFoundMessage}}</h1>
-  <!-- <p class="text-2xl pt-7 px-12 font-medium">Before proceed to checkout you must add some products to your shopping cart.</p> -->
-  <button [routerLink]="resetLinkRoute" class="mt-4 bg-gradient-to-r from-purple-400 to-blue-500 hover:from-pink-500 hover:to-orange-500 text-white font-semibold px-6 py-3 rounded-md">
+  <!-- <p class="px-12 text-2xl font-medium pt-7">Before proceed to checkout you must add some products to your shopping cart.</p> -->
+  <button [routerLink]="resetLinkRoute" class="px-6 py-3 mt-4 font-semibold text-white rounded-md bg-gradient-to-r from-purple-400 to-blue-500 hover:from-pink-500 hover:to-orange-500">
   {{resentLinkText}}
   </button>
 

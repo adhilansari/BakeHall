@@ -1,5 +1,5 @@
-<section class=" flex items-center justify-center mx-auto px-4 md:px-12 py-2 ">
-  <div class="grid lg:grid-cols-2 items-center justify-items-center gap-5 p-2 md:p-8 ">
+<section class="flex items-center justify-center px-4 py-2 mx-auto  md:px-12" *ngIf="visible">
+  <div class="grid items-center gap-5 p-2 lg:grid-cols-2 justify-items-center md:p-8 ">
     <div class="order-2 lg:order-1 flex flex-col justify-center items-center text-center md:px-2 text-orange-400 border-[0.7rem] border-amber-500 border-opacity-60 backdrop-blur-md rounded-md h-full shadow-2xl">
       <div class="space-y-4">
         <p class="text-4xl font-bold md:text-6xl ">Be The Fastest In <span class="text-red-600">Delivering</span> Your Food</p>
@@ -10,7 +10,7 @@
       <owl-carousel-o [options]="customOptions" >
 
         <ng-container *ngFor="let slide of foods">
-          <ng-template class=" " carouselSlide [id]="slide.id" >
+          <ng-template class="" carouselSlide [id]="slide.id" >
             <img [src]="slide.imageUrl"routerLink="/food/{{ slide.id }}" class="h-36 w-36 sm:h-52 sm:w-52 md:h-80 md:w-80 lg:w-[500px] lg:h-[500px] object-cover" [alt]="slide.id" [title]="slide.id">
           </ng-template>
         </ng-container>

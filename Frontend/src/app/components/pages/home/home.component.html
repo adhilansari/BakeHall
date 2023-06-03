@@ -1,7 +1,7 @@
-<div class=" ">
-  <app-hero-img *ngIf="hero"></app-hero-img>
+<div class="">
+  <app-hero-img *ngIf="hero" [visible]="foods.length?true:false"></app-hero-img>
 
-  <app-features></app-features>
+  <app-features [visible]="foods.length?true:false"></app-features>
 
   <app-search></app-search>
   <app-tags></app-tags>
@@ -9,9 +9,9 @@
     [visible]="!foods || !foods.length"
     resentLinkText="Reset Search"
   ></app-not-found>
-  <div class="flex justify-center flex-wrap mx-auto px-4 md:px-12">
+  <div class="flex flex-wrap justify-center px-4 mx-auto md:px-12">
     <div
-      class="flex flex-wrap mx-auto content-start h-full gap-2 w-full items-center sm:gap-5 md:gap-9 py-4 justify-center "
+      class="flex flex-wrap items-center content-start justify-center w-full h-full gap-2 py-4 mx-auto sm:gap-5 md:gap-9 "
     >
       <div class="" *ngFor="let food of foods">
         <!-- card -->
@@ -28,13 +28,13 @@
           </a>
 
           <section class="flex flex-col leading-tight p-2 bg-secondary_bg md:p-4  w-[16rem] h-[4rem] sm:min-w-[272px] sm:max-w-[272px] sm:min-h-[199px] max-h-[199px]">
-            <div class="flex items-center  justify-between leading-tight">
+            <div class="flex items-center justify-between leading-tight">
               <h1 class="text-lg line-clamp-2">
                 <a class="no-underline" href="#">
                   {{ food.name }}
                 </a>
               </h1>
-              <div class="hidden sm:flex items-center gap-3">
+              <div class="items-center hidden gap-3 sm:flex">
                 <span
                 ><i
 
@@ -44,7 +44,7 @@
               ></span>
               <span
               ><i
-                class="hidden sm:block fa-solid fa-bag-shopping favorites text-orange-900 text-2xl"
+                class="hidden text-2xl text-orange-900 sm:block fa-solid fa-bag-shopping favorites"
                 (click)="addToCart(food)"
               ></i
             ></span>
@@ -82,8 +82,8 @@
             </div>
           </section>
 
-          <!-- <footer class="flex items-center justify-between leading-none p-2 md:p-4 h-full">
-                  <a class="flex items-center no-underline hover:underline text-black" href="#">
+          <!-- <footer class="flex items-center justify-between h-full p-2 leading-none md:p-4">
+                  <a class="flex items-center text-black no-underline hover:underline" href="#">
                       <p class="ml-2 text-sm">
                           BakeHall Assured
                       </p>
@@ -97,28 +97,28 @@
   </div>
 
   <footer class="relative bg-[#2D2424] text-slate-200 pt-8 pb-6">
-    <div class="container mx-auto px-4">
+    <div class="container px-4 mx-auto">
       <div class="flex flex-wrap text-left lg:text-left">
-        <div class="w-full lg:w-6/12 px-4 ">
+        <div class="w-full px-4 lg:w-6/12 ">
           <h4 class="text-3xl fonat-semibold text-blueGray-700">
             Let's keep in touch!
           </h4>
-          <h5 class="text-lg mt-0 mb-2 text-blueGray-600">
+          <h5 class="mt-0 mb-2 text-lg text-blueGray-600">
             Find us on any of these platforms, we respond 1-2 business days.
           </h5>
-          <div class="mt-6 lg:mb-0 mb-6 text-black">
+          <div class="mt-6 mb-6 text-black lg:mb-0">
             <button
-              class="bg-white text-lightBlue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+              class="items-center justify-center w-10 h-10 mr-2 font-normal bg-white rounded-full shadow-lg outline-none text-lightBlue-400 align-center focus:outline-none"
               type="button"
             >
               <i class="fab fa-twitter"></i></button
             ><button
-              class="bg-white text-lightBlue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+              class="items-center justify-center w-10 h-10 mr-2 font-normal bg-white rounded-full shadow-lg outline-none text-lightBlue-600 align-center focus:outline-none"
               type="button"
             >
               <i class="fab fa-facebook-square"></i></button
             ><button
-              class="bg-white text-blueGray-800 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+              class="items-center justify-center w-10 h-10 mr-2 font-normal bg-white rounded-full shadow-lg outline-none text-blueGray-800 align-center focus:outline-none"
               type="button"
               onclick="location.href = 'https://github.com/adhilansari'"
 
@@ -127,54 +127,54 @@
             </button>
           </div>
         </div>
-        <div class="w-full lg:w-6/12 px-4">
-          <div class="flex flex-wrap items-top mb-6">
-            <div class="w-full lg:w-4/12 px-4 ml-auto">
+        <div class="w-full px-4 lg:w-6/12">
+          <div class="flex flex-wrap mb-6 items-top">
+            <div class="w-full px-4 ml-auto lg:w-4/12">
               <span
-                class="block uppercase text-blueGray-500 text-sm font-semibold mb-2"
+                class="block mb-2 text-sm font-semibold uppercase text-blueGray-500"
                 >Useful Links</span
               >
               <ul class="list-unstyled">
                 <li>
                   <a
-                    class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                    class="block pb-2 text-sm font-semibold text-blueGray-600 hover:text-blueGray-800"
                     href="#"
                     >About Us</a
                   >
                 </li>
                 <li>
                   <a
-                    class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                    class="block pb-2 text-sm font-semibold text-blueGray-600 hover:text-blueGray-800"
                     href="https://github.com/adhilansari"
                     >Github</a
                   >
                 </li>
               </ul>
             </div>
-            <div class="w-full lg:w-4/12 px-4">
+            <div class="w-full px-4 lg:w-4/12">
               <span
-                class="block uppercase text-blueGray-500 text-sm font-semibold mb-2"
+                class="block mb-2 text-sm font-semibold uppercase text-blueGray-500"
                 >Other Resources</span
               >
               <ul class="list-unstyled">
 
                 <li>
                   <a
-                    class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                    class="block pb-2 text-sm font-semibold text-blueGray-600 hover:text-blueGray-800"
                     href="#"
                     >Terms & Conditions</a
                   >
                 </li>
                 <li>
                   <a
-                    class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                    class="block pb-2 text-sm font-semibold text-blueGray-600 hover:text-blueGray-800"
                     href="#"
                     >Privacy Policy</a
                   >
                 </li>
                 <li>
                   <a
-                    class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                    class="block pb-2 text-sm font-semibold text-blueGray-600 hover:text-blueGray-800"
                     href="#"
                     >Contact Us</a
                   >
