@@ -10,10 +10,11 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CartService {
   private cart:Cart = this.getCartFromLocalStorage()
-  private cartSubject: BehaviorSubject<Cart> = new BehaviorSubject(this.cart)
+  private cartSubject: BehaviorSubject<Cart> = new BehaviorSubject(this.cart);
   constructor(private toastrService:ToastrService) { }
 
   addToCart(food:Food):void{
+
     let cartItem=this.cart.items.find(item=>item.food.id===food.id)
     if(cartItem){
       this.toastrService.info(`${cartItem.food.name} already in cart`)
@@ -22,6 +23,8 @@ export class CartService {
 
   this.cart.items.push(new CartItem(food))
   this.toastrService.success(`${food.name} added to cart`)
+  console.log(this.cart);
+
 
   this.setCartToLocalStorage()
 
@@ -39,7 +42,9 @@ export class CartService {
 
     cartItem.quantity=quantity
     cartItem.price=quantity * cartItem.food.price;
+
     this.setCartToLocalStorage()
+    console.log(this.cart);
 
   }
 

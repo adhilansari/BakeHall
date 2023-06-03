@@ -40,32 +40,17 @@ export class FoodService {
   return this.http.get<Food[]>(FAVORITE_BY_ID_URL + isFavorite)
   };
 
-
-/////
-
-// createFood(food:any):Observable<Food>{
-//   return this.http.post<Food>(ADMIN_URL,food).
-//   pipe(
-//     tap({
-//       next:(food)=>{
-//         this.foodSubject.next(food);
-//         this.toastr.success(` ${food.name} added successfully`,
-//         )
-//       },
-//       error:(errorResponse)=>{
-//         this.toastr.error(errorResponse.error,'Adding food is Failed')
-//       }
-//     })
-//     )
-//   }
   changeFavorite(food:Food):Observable<Food>{
     return this.http.put<Food>(FOOD_BY_ID_URL,food)
   }
 
 createFood(FD:FormData ):Observable<Food[]>{
-  console.log( FD);
-
 return this.http.post<Food[]>(ADMIN_URL,FD)
+};
+
+updateFood(id:string,food:Food){
+return this.http.put(`${ADMIN_URL}/${id}`,food)
+
 }
 
 

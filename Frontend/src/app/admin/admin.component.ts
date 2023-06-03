@@ -123,7 +123,7 @@ export class AdminComponent {
     };
 
     this.http
-      .put(`${ADMIN_URL}/${this.updateFood.id}`, food)
+      this.foodService.updateFood(this.updateFood.id,food)
       .subscribe({
         next: () => {
 
